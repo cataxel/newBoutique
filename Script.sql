@@ -109,6 +109,7 @@ create table ropa(
     ganancia double not null,
     genero varchar(9) not null,
     marca varchar(30) not null,
+    imagen varchar(300) not null,
     idtipoprenda int not null,
     primary key(idropa),
     FOREIGN KEY (idtipoprenda) REFERENCES TipoPrenda(idTipoPrenda)
@@ -168,3 +169,31 @@ Select MAX(idropa) from ropa;
 
 
 SELECT t.nombre, rt.existencias FROM Tallas t INNER JOIN ropa_talla rt ON t.idtalla = rt.idtalla INNER JOIN ropa r ON rt.idropa = r.idropa WHERE r.idropa=10;
+
+//provedores
+CREATE table Proveedor(
+	CveProveedor int auto_increment not null,
+	NombreProveedor varchar (50) not null ,
+	Telefonoproveedor varchar (12) not null ,
+	DireccionProveedor varchar (100) not null,
+	NombreEmpresaProveedor varchar(50) not null,
+	ActivoProveedor boolean not null,
+	primary key (CveProveedor)
+);
+insert into Proveedor(NombreProveedor,Telefonoproveedor,DireccionProveedor,NombreEmpresaProveedor,ActivoProveedor) values ('ss','34334','jhabsd','ropa',true);
+UPDATE Proveedor set NombreProveedor = 'nose', Telefonoproveedor ='nose',DireccionProveedor='nose',NombreEmpresaProveedor ='nose' where CveProveedor = 1;
+SELECT * from Proveedor ;
+SELECT COUNT(*) from Proveedor p ;
+
+
+//marcas
+
+create table Marca (
+idMarca int auto_increment,
+Codigomarca int(50) not null,
+nombreMarca varchar(50) not null,
+primary key(idMarca)
+);
+insert into Marca(Codigomarca, nombreMarca) values('221','H&M');
+select * from Marca;
+
