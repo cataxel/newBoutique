@@ -15,8 +15,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     public static InicioSesion frmLog;
     public static Crear_Cuenta frmReg;
-    public static CRUD_Ropa frmCRopa;
+    public static CRUD_ropa frmCRopa;
     public static CRUD_Usuarios frmCusers;
+    public static CRUD_Proveedores1 frmprovee;
     public static Reportes reportes;
     Usuario mod;
     
@@ -63,6 +64,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
     }
 
+   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -70,14 +73,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         desktopPane = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
-        label2 = new java.awt.Label();
         jLabel1 = new javax.swing.JLabel();
-        btnDamas = new javax.swing.JButton();
-        btnCaballeros = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        label2 = new java.awt.Label();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        btnUsuario = new javax.swing.JButton();
+        btnProveedores = new javax.swing.JButton();
+        btnRopa = new javax.swing.JButton();
+        btnReportes = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
-        menuDama = new javax.swing.JMenu();
-        menuCaballero = new javax.swing.JMenu();
-        menuContacto = new javax.swing.JMenu();
         menuusuario = new javax.swing.JMenu();
         submenuInicioSesion = new javax.swing.JMenuItem();
         submenuRegistrar = new javax.swing.JMenuItem();
@@ -94,21 +102,80 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        label2.setText("Bienvenido");
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/pulpo1.png"))); // NOI18N
 
-        btnDamas.setText("Damas");
-        btnDamas.addActionListener(new java.awt.event.ActionListener() {
+        jPanel2.setBackground(new java.awt.Color(82, 153, 153));
+
+        label2.setFont(new java.awt.Font("SimSun", 1, 36)); // NOI18N
+        label2.setForeground(new java.awt.Color(255, 255, 255));
+        label2.setText("Bienvenido");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        jLabel2.setFont(new java.awt.Font("SimSun", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel2.setText("Ir a:");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/iconosmenuP/usuario.png"))); // NOI18N
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/iconosmenuP/ropaicon.png"))); // NOI18N
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/iconosmenuP/provedores.png"))); // NOI18N
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/iconosmenuP/consultaicon.png"))); // NOI18N
+
+        btnUsuario.setBackground(new java.awt.Color(0, 153, 153));
+        btnUsuario.setFont(new java.awt.Font("SimSun", 1, 14)); // NOI18N
+        btnUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnUsuario.setText("Usuario");
+        btnUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDamasActionPerformed(evt);
+                btnUsuarioActionPerformed(evt);
             }
         });
 
-        btnCaballeros.setText("Caballeros");
-        btnCaballeros.addActionListener(new java.awt.event.ActionListener() {
+        btnProveedores.setBackground(new java.awt.Color(0, 153, 153));
+        btnProveedores.setFont(new java.awt.Font("SimSun", 1, 14)); // NOI18N
+        btnProveedores.setForeground(new java.awt.Color(255, 255, 255));
+        btnProveedores.setText("Proveedores");
+        btnProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCaballerosActionPerformed(evt);
+                btnProveedoresActionPerformed(evt);
+            }
+        });
+
+        btnRopa.setBackground(new java.awt.Color(0, 153, 153));
+        btnRopa.setFont(new java.awt.Font("SimSun", 1, 14)); // NOI18N
+        btnRopa.setForeground(new java.awt.Color(255, 255, 255));
+        btnRopa.setText("Ropa");
+        btnRopa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRopaActionPerformed(evt);
+            }
+        });
+
+        btnReportes.setBackground(new java.awt.Color(0, 153, 153));
+        btnReportes.setFont(new java.awt.Font("SimSun", 1, 14)); // NOI18N
+        btnReportes.setForeground(new java.awt.Color(255, 255, 255));
+        btnReportes.setText("Reportes");
+        btnReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportesActionPerformed(evt);
             }
         });
 
@@ -117,64 +184,69 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGap(59, 59, 59)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnReportes))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnProveedores)
+                            .addGap(220, 220, 220)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnDamas, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCaballeros, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(101, 101, 101))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(329, 329, 329))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnUsuario)
+                                    .addComponent(btnRopa))))
+                        .addGap(226, 226, 226))))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUsuario))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRopa))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnProveedores)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCaballeros, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDamas, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(btnReportes))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         desktopPane.add(jPanel1);
-        jPanel1.setBounds(0, 0, 630, 360);
+        jPanel1.setBounds(0, 0, 640, 420);
 
-        menuDama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/iconosmenuP/mujer.png"))); // NOI18N
-        menuDama.setText("Dama");
-        menuDama.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        menuDama.setIconTextGap(0);
-        menuDama.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuDamaActionPerformed(evt);
-            }
-        });
-        menuBar.add(menuDama);
-
-        menuCaballero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/iconosmenuP/hombre.png"))); // NOI18N
-        menuCaballero.setText("Caballero");
-        menuCaballero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCaballeroActionPerformed(evt);
-            }
-        });
-        menuBar.add(menuCaballero);
-
-        menuContacto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/iconosmenuP/contacto.png"))); // NOI18N
-        menuContacto.setText("Contacto");
-        menuContacto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuContactoMouseClicked(evt);
-            }
-        });
-        menuBar.add(menuContacto);
+        menuBar.setBackground(new java.awt.Color(86, 153, 153));
 
         menuusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/iconosmenuP/usuario.png"))); // NOI18N
         menuusuario.setText("Usuario");
@@ -245,52 +317,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnDamasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDamasActionPerformed
-        /*MenuPrincipalDamas mpd=new MenuPrincipalDamas(mod);
-        mpd.setVisible(true);
-        dispose();*/
-    }//GEN-LAST:event_btnDamasActionPerformed
-
-    private void btnCaballerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaballerosActionPerformed
-        /*MenuPrincipalCaballeros mpc=new MenuPrincipalCaballeros(mod);
-        mpc.setVisible(true);
-        dispose();*/
-    }//GEN-LAST:event_btnCaballerosActionPerformed
-
-    private void menuDamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDamaActionPerformed
-        /*MenuPrincipalDamas mpd=new MenuPrincipalDamas(mod);
-        mpd.setVisible(true);
-        dispose();*/
-    }//GEN-LAST:event_menuDamaActionPerformed
-
-    private void menuCaballeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCaballeroActionPerformed
-        /*MenuPrincipalCaballeros mpc=new MenuPrincipalCaballeros(mod);
-        mpc.setVisible(true);
-        dispose();*/
-    }//GEN-LAST:event_menuCaballeroActionPerformed
-
-    private void menuContactoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuContactoMouseClicked
-        Contacto contacto=new Contacto(mod);
-        contacto.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_menuContactoMouseClicked
 
     private void submenuRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submenuRegistrarActionPerformed
         if(frmReg == null)
         {
            frmReg = new Crear_Cuenta();
            frmReg.setVisible(true);
-           dispose();
         }
     }//GEN-LAST:event_submenuRegistrarActionPerformed
 
@@ -299,7 +342,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         {
            frmLog = new InicioSesion();
            frmLog.setVisible(true);
-           dispose();
         }
     }//GEN-LAST:event_submenuInicioSesionActionPerformed
 
@@ -310,9 +352,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void submenuRopaGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submenuRopaGestionActionPerformed
         if(frmCRopa == null)
         {
-           frmCRopa = new CRUD_Ropa(mod);
+           frmCRopa = new CRUD_ropa(mod);
            frmCRopa.setVisible(true);
-           dispose();
         }
     }//GEN-LAST:event_submenuRopaGestionActionPerformed
 
@@ -321,7 +362,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         {
             frmCusers = new CRUD_Usuarios(mod);
             frmCusers.setVisible(true);
-            dispose();
         }
     }//GEN-LAST:event_submenugestionusersActionPerformed
 
@@ -333,6 +373,40 @@ public class MenuPrincipal extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_MenuConsultasMouseClicked
+
+    private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
+        if (reportes == null) {
+            reportes = new Reportes(mod);
+            reportes.setVisible(true);
+        }
+    }//GEN-LAST:event_btnReportesActionPerformed
+
+    private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
+        if(frmCusers == null)
+        {
+            frmCusers = new CRUD_Usuarios(mod);
+            frmCusers.setVisible(true);
+        }
+    }//GEN-LAST:event_btnUsuarioActionPerformed
+
+    private void btnRopaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRopaActionPerformed
+        if(frmCRopa == null)
+        {
+           frmCRopa = new CRUD_ropa(mod);
+           frmCRopa.setVisible(true);
+        }
+    }//GEN-LAST:event_btnRopaActionPerformed
+
+    private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
+        if(frmprovee == null)
+        {
+           frmprovee = new CRUD_Proveedores1();
+           frmprovee.setVisible(true);
+        }
+        
+        /*CRUD_Proveedores1 cp1=new CRUD_Proveedores1();
+        cp1.setVisible(true);*/
+    }//GEN-LAST:event_btnProveedoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -373,17 +447,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu MenuConsultas;
-    private javax.swing.JButton btnCaballeros;
-    private javax.swing.JButton btnDamas;
+    private javax.swing.JButton btnProveedores;
+    private javax.swing.JButton btnReportes;
+    private javax.swing.JButton btnRopa;
+    private javax.swing.JButton btnUsuario;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private java.awt.Label label2;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenu menuCaballero;
-    private javax.swing.JMenu menuContacto;
-    private javax.swing.JMenu menuDama;
     private javax.swing.JMenu menuProovedores;
     private javax.swing.JMenu menuRopaAd;
     private javax.swing.JMenu menuusuario;

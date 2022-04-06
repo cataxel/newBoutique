@@ -841,7 +841,7 @@ public class CRUD_Ropa extends javax.swing.JFrame {
 
     private void txtVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseClicked
         dispose();
-        MenuPrincipal.frmCRopa = null;
+        
     }//GEN-LAST:event_txtVolverMouseClicked
 
     private void txtbuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarKeyPressed

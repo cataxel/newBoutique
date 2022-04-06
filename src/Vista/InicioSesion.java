@@ -29,14 +29,13 @@ public class InicioSesion extends javax.swing.JFrame {
         Nombre = new javax.swing.JLabel();
         txtusuario = new javax.swing.JTextField();
         Contraseña = new javax.swing.JLabel();
-        btniIngresar = new javax.swing.JPanel();
-        txtentrar = new javax.swing.JLabel();
-        btncrearcuenta = new javax.swing.JPanel();
-        txtccuenta = new javax.swing.JLabel();
         txtcontra = new javax.swing.JPasswordField();
         ver = new javax.swing.JLabel();
         ocultar = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         txtVolver = new javax.swing.JLabel();
+        btnCrearCuenta = new javax.swing.JButton();
+        btnIngresar = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -50,15 +49,18 @@ public class InicioSesion extends javax.swing.JFrame {
         panel.setBackground(new java.awt.Color(255, 255, 255));
 
         CuadroImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CuadroImagen.setText("IMAGEN");
+        CuadroImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/pulpo1.png"))); // NOI18N
 
-        TituloInicioSesion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        TituloInicioSesion.setFont(new java.awt.Font("SimSun", 1, 36)); // NOI18N
+        TituloInicioSesion.setForeground(new java.awt.Color(0, 102, 102));
         TituloInicioSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TituloInicioSesion.setText("INICIAR SESION");
+        TituloInicioSesion.setText("INICIAR SESIÓN");
 
-        Nombre.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        Nombre.setFont(new java.awt.Font("SimSun", 3, 12)); // NOI18N
+        Nombre.setForeground(new java.awt.Color(0, 102, 102));
         Nombre.setText("NOMBRE DE USUARIO");
 
+        txtusuario.setFont(new java.awt.Font("SimSun", 0, 12)); // NOI18N
         txtusuario.setForeground(new java.awt.Color(204, 204, 204));
         txtusuario.setText("Ingrese el nombre de usuario");
         txtusuario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -67,48 +69,9 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
 
-        Contraseña.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        Contraseña.setFont(new java.awt.Font("SimSun", 3, 12)); // NOI18N
+        Contraseña.setForeground(new java.awt.Color(0, 102, 102));
         Contraseña.setText("CONTRASEÑA");
-
-        txtentrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtentrar.setText("INGRESAR");
-        txtentrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtentrarMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout btniIngresarLayout = new javax.swing.GroupLayout(btniIngresar);
-        btniIngresar.setLayout(btniIngresarLayout);
-        btniIngresarLayout.setHorizontalGroup(
-            btniIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtentrar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-        );
-        btniIngresarLayout.setVerticalGroup(
-            btniIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtentrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        txtccuenta.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
-        txtccuenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtccuenta.setText("Crear cuenta");
-        txtccuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txtccuenta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtccuentaMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout btncrearcuentaLayout = new javax.swing.GroupLayout(btncrearcuenta);
-        btncrearcuenta.setLayout(btncrearcuentaLayout);
-        btncrearcuentaLayout.setHorizontalGroup(
-            btncrearcuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtccuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-        );
-        btncrearcuentaLayout.setVerticalGroup(
-            btncrearcuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtccuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
 
         txtcontra.setForeground(new java.awt.Color(204, 204, 204));
         txtcontra.setText("********");
@@ -123,6 +86,8 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
 
+        ver.setFont(new java.awt.Font("SimSun", 0, 12)); // NOI18N
+        ver.setForeground(new java.awt.Color(0, 102, 102));
         ver.setText("Ver");
         ver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ver.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,6 +96,8 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
 
+        ocultar.setFont(new java.awt.Font("SimSun", 0, 12)); // NOI18N
+        ocultar.setForeground(new java.awt.Color(0, 102, 102));
         ocultar.setText("Ocultar");
         ocultar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ocultar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -139,6 +106,10 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(143, 204, 204));
+
+        txtVolver.setFont(new java.awt.Font("SimSun", 0, 12)); // NOI18N
+        txtVolver.setForeground(new java.awt.Color(0, 51, 51));
         txtVolver.setText("< Volver al menu");
         txtVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtVolver.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -147,65 +118,105 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtVolver, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addGap(11, 11, 11))
+        );
+
+        btnCrearCuenta.setBackground(new java.awt.Color(0, 153, 153));
+        btnCrearCuenta.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
+        btnCrearCuenta.setForeground(new java.awt.Color(255, 255, 255));
+        btnCrearCuenta.setText("Crear Cuenta");
+        btnCrearCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearCuentaActionPerformed(evt);
+            }
+        });
+
+        btnIngresar.setBackground(new java.awt.Color(0, 153, 153));
+        btnIngresar.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
+        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(CuadroImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TituloInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(txtcontra, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(7, 7, 7)
-                                .addComponent(ver))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtcontra, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(255, 255, 255)
-                                .addComponent(ocultar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-            .addGroup(panelLayout.createSequentialGroup()
-                .addGap(205, 205, 205)
-                .addComponent(btncrearcuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91)
-                .addComponent(btniIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(txtVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(68, 68, 68)
+                                .addComponent(ver, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(72, 72, 72)
+                                .addComponent(ocultar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addComponent(TituloInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addComponent(btnCrearCuenta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                                .addComponent(btnIngresar)
+                                .addGap(43, 43, 43))))))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addComponent(txtVolver, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                .addGap(6, 6, 6)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(TituloInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CuadroImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addComponent(TituloInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
                         .addComponent(Nombre)
-                        .addGap(7, 7, 7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
+                        .addGap(18, 18, 18)
                         .addComponent(Contraseña)
-                        .addGap(7, 7, 7)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtcontra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(ver))
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(ocultar)))))
-                .addGap(7, 7, 7)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btncrearcuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btniIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 13, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtcontra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ver)
+                            .addComponent(ocultar))
+                        .addGap(37, 37, 37)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCrearCuenta)
+                            .addComponent(btnIngresar))))
+                .addGap(0, 32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -216,7 +227,7 @@ public class InicioSesion extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -252,43 +263,6 @@ public class InicioSesion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtcontraMousePressed
 
-    private void txtccuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtccuentaMouseClicked
-        dispose();
-        Crear_Cuenta objcrear = new Crear_Cuenta();
-        objcrear.setVisible(true);
-        MenuPrincipal.frmLog = null;
-    }//GEN-LAST:event_txtccuentaMouseClicked
-
-    private void txtentrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtentrarMouseClicked
-        SQL_Usuarios modSql = new SQL_Usuarios();
-        Usuario mod = new Usuario();
-        Date date = new Date();
-        DateFormat fecha_hora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        
-        String contra = new String(txtcontra.getPassword());
-        if(!(txtusuario.getText().equals("")) && !(contra.equals("")))
-        {
-            mod.setUsuario(txtusuario.getText());
-            mod.setContra(hash.sha1(contra));
-            mod.setLast_session(fecha_hora.format(date));
-            if(modSql.Login(mod))
-            {
-                MenuPrincipal.frmLog = null;
-                this.dispose();
-                MenuPrincipal menu = new MenuPrincipal(mod);
-                menu.setVisible(true);
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(this, "Revise los datos que escribió en los campos de información sean correctos, intente nuevamente", "Inicio de sesion", JOptionPane.CANCEL_OPTION);
-            }
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(this, "Debe ingresar sus datos en los campos de información", "Inicio de sesion", JOptionPane.CANCEL_OPTION);
-        }
-    }//GEN-LAST:event_txtentrarMouseClicked
-
     private void verMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verMouseClicked
         ver.setVisible(false);
         ocultar.setVisible(true);
@@ -309,6 +283,16 @@ public class InicioSesion extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal.frmLog = null;
     }//GEN-LAST:event_formWindowClosing
+
+    private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
+        Crear_Cuenta cc=new Crear_Cuenta();
+        cc.setVisible(true);
+    }//GEN-LAST:event_btnCrearCuentaActionPerformed
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+//        MenuPrincipal mp=new MenuPrincipal();
+//        mp.setVisible(true);
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -354,15 +338,14 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JLabel CuadroImagen;
     private javax.swing.JLabel Nombre;
     private javax.swing.JLabel TituloInicioSesion;
-    private javax.swing.JPanel btncrearcuenta;
-    private javax.swing.JPanel btniIngresar;
+    private javax.swing.JButton btnCrearCuenta;
+    private javax.swing.JButton btnIngresar;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel ocultar;
     private javax.swing.JPanel panel;
     private javax.swing.JLabel txtVolver;
-    private javax.swing.JLabel txtccuenta;
     private javax.swing.JPasswordField txtcontra;
-    private javax.swing.JLabel txtentrar;
     private javax.swing.JTextField txtusuario;
     private javax.swing.JLabel ver;
     // End of variables declaration//GEN-END:variables

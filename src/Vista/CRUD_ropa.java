@@ -90,6 +90,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
         txtbuscar = new javax.swing.JTextField();
         btnbuscar = new javax.swing.JButton();
         btnRestablecer = new javax.swing.JButton();
+        txtVolver = new javax.swing.JLabel();
         Operaciones = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -207,6 +208,14 @@ public class CRUD_ropa extends javax.swing.JFrame {
             }
         });
 
+        txtVolver.setText("< Volver al menu");
+        txtVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtVolverMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout ListadoLayout = new javax.swing.GroupLayout(Listado);
         Listado.setLayout(ListadoLayout);
         ListadoLayout.setHorizontalGroup(
@@ -242,11 +251,15 @@ public class CRUD_ropa extends javax.swing.JFrame {
                         .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(ListadoLayout.createSequentialGroup()
+                .addComponent(txtVolver)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         ListadoLayout.setVerticalGroup(
             ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ListadoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(txtVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -579,7 +592,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
                         .addGroup(OperacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
                             .addComponent(cmbtipo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 36, Short.MAX_VALUE))
+                        .addGap(0, 46, Short.MAX_VALUE))
                     .addComponent(lblRopa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(OperacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1277,6 +1290,11 @@ public class CRUD_ropa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAgregarImagenActionPerformed
 
+    private void txtVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseClicked
+        dispose();
+        MenuPrincipal.frmCRopa = null;
+    }//GEN-LAST:event_txtVolverMouseClicked
+
     public void pintarImagen(JLabel lbl, String ruta){
          ImageIcon imagen = new ImageIcon(ruta);
          Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(lbl.getWidth(), lbl.getHeight(), Image.SCALE_SMOOTH));
@@ -1572,6 +1590,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JLabel txtVolver;
     private javax.swing.JTextField txtbuscar;
     private javax.swing.JTextField txtexistencias;
     private javax.swing.JTextField txtmarca;
