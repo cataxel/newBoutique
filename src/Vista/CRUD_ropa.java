@@ -628,7 +628,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
                 txtID.setText(String.valueOf(id));
                 txtNombre.setText(rs.getString(2));
                 txtDescripcion.setText(rs.getString(3));
-                pintarImagen(imagenRopa, "src/presentacion/img/categorias/"+rs.getString(8));
+                //pintarImagen(imagenRopa, "src/presentacion/img/categorias/"+rs.getString(8));
                 txtpreciocosto.setText(rs.getString(4));
                 txtprecioventa.setText(rs.getString(5));
                 //cmbtalla.setSelectedItem(rs.getString("talla"));
