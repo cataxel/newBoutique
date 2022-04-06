@@ -53,48 +53,13 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
         JTListadoCategorias.setModel(control.listar(texto));
         Connection con2 = Conexion.getCon();
         //Configurar la tabla
-         DefaultTableModel modelotabla = (DefaultTableModel) JTListadoCategorias.getModel();
-        modelotabla.setRowCount(0);
-        PreparedStatement ps;
-        ResultSet rs;
-        ResultSetMetaData rsmd;
-        int columnas;
-        //724 tamano tabla de forma horizontal
-        int[] anchos = {40,100,150,50,50,50,60,70,80,110};
-        for(int i = 0; i<JTListadoCategorias.getColumnCount(); i++)
-        {
-            JTListadoCategorias.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
-        }
-        try
-        {
-            Connection con = Conexion.getCon();
-            //String consultaSQL = "SELECT idropa, nombre, descripcion, precio, genero, marca FROM ropa";
-            String consultaSQL = "Select * from Proveedor";
-            ps = con.prepareStatement(consultaSQL);
-            rs = ps.executeQuery();
-            rsmd = rs.getMetaData();
-            columnas = rsmd.getColumnCount();
-            Object[] fila = new Object[columnas];
-            while(rs.next())
-            {
-                fila[0] = rs.getInt(1);
-                fila[1] = rs.getString(2);
-                fila[2] = rs.getString(3);
-                fila[3] = rs.getString(4);
-                fila[4] = rs.getString(5);
-                fila[5] = rs.getInt(6);
-                modelotabla.addRow(fila);
-            }
-        }
-        catch(SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, e.toString());
-        }
+        
         //para ordenar datos en la tabla de acuerdo a la columna
          TableRowSorter modeloOrdenado = new TableRowSorter(JTListadoCategorias.getModel());
          JTListadoCategorias.setRowSorter(modeloOrdenado);
          
          LvlRegistrosMostrados.setText("Mostrados" + control.totaalMostrados() + " registros de " + control.total());
+        
     }
      public void msjOk(String mensaje){
          JOptionPane.showMessageDialog(this, mensaje ,"Sistema de Administración SubMenu Proveedores",JOptionPane.INFORMATION_MESSAGE);
@@ -159,8 +124,6 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
         txtTelefonoProv = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtDireccionProv = new javax.swing.JTextField();
-        lblProveedor = new javax.swing.JLabel();
-        btnCargarImg = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
@@ -373,18 +336,6 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
         jLabel8.setForeground(new java.awt.Color(0, 102, 102));
         jLabel8.setText("Nombre empresa Proveedor:");
 
-        lblProveedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
-
-        btnCargarImg.setBackground(new java.awt.Color(0, 102, 102));
-        btnCargarImg.setFont(new java.awt.Font("SimSun", 1, 14)); // NOI18N
-        btnCargarImg.setForeground(new java.awt.Color(255, 255, 255));
-        btnCargarImg.setText("Subir imagen");
-        btnCargarImg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargarImgActionPerformed(evt);
-            }
-        });
-
         btnCancelar.setBackground(new java.awt.Color(0, 102, 102));
         btnCancelar.setFont(new java.awt.Font("SimSun", 1, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -440,11 +391,7 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
                                     .addComponent(txtTelefonoProv, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(btnCargarImg)))
+                        .addGap(193, 193, 193)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -470,9 +417,6 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(392, 392, 392)
-                        .addComponent(btnCargarImg))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -490,24 +434,18 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(txtNombreEmpresaProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(lblProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(79, 79, 79)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnCancelar)
-                                    .addComponent(btnGuardar))
-                                .addGap(14, 14, 14))))
+                        .addGap(79, 79, 79)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCancelar)
+                            .addComponent(btnGuardar)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         TabCategorias.addTab("Operaciones", jPanel2);
@@ -564,6 +502,7 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
         {
             JOptionPane.showMessageDialog(this, "Debes seleccionar un registro", "Sistema Administrativo SubMenu Proveedores",JOptionPane.WARNING_MESSAGE);
         }
+        
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnDesactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesactivarActionPerformed
@@ -585,32 +524,12 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
 
         }else
         JOptionPane.showMessageDialog(this, "Debes seleccionar un registro","Sistema Administrativo SubMenu Proveedores",JOptionPane.WARNING_MESSAGE);
+        
     }//GEN-LAST:event_btnDesactivarActionPerformed
 
     private void btnActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivarActionPerformed
 
     }//GEN-LAST:event_btnActivarActionPerformed
-
-    private void btnCargarImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarImgActionPerformed
-      /*  String ruta;
-        //crear un obj que permita seleccionar un archvio
-        JFileChooser jf = new JFileChooser();
-        //establecer un filtro para seleccion de imagenes
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Gif,JPG,PNG", "gif","jpg","png");
-        // establecer el filtro al objeto jf
-        jf.setFileFilter(filtro);
-        // abrir el cuadro de dialogo
-        int resp = jf.showOpenDialog(this);
-        // validar la respuesta
-        if(resp == JFileChooser.APPROVE_OPTION){
-            // obtener la ruta del archivo seleccionado
-            ruta = jf.getSelectedFile().getPath();
-            // obtener el nombre del archivo seleccionado
-            ImagenProveedor = jf.getSelectedFile().getName();
-            // pintar la imagen que selecciono el usuario
-            pintarImagen(lblProveedor,ruta);
-        }*/
-    }//GEN-LAST:event_btnCargarImgActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         //Regresar al primer tab
@@ -621,49 +540,50 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-//        String reps;
-//        //Verificar que el campo nombre no este vacio
-//        if(txtNombreProv.getText().isBlank())
-//        {
-//            JOptionPane.showMessageDialog(this, "No debe de estar vacio el nombre","Sistema Administrativo SubMenu Proveedores",JOptionPane.WARNING_MESSAGE);
-//            txtNombreProv.requestFocus();
-//            return;
-//        }
-//        else
-//        {
-//            //se debe de sacar del else
-//            if(accion.equals("editar"))
-//            {
-//                //codigo de editar o actualizar
-//                //reps = control.actualizar(txtNombreProv.getText(), txtTelefonoProv.getText(), txtDireccionProv.getText(), txtNombreEmpresaProveedor.getText(),ImagenProveedor,true);
-//                if(reps.equals("ok")){
-//                    msjOk("Registro editado correctamente");
-//                    listar("");
-//                    limpiar();
-//                    //activar el tab 0
-//                    TabCategorias.setSelectedIndex(0);
-//                    TabCategorias.setEnabledAt(0, true);
-//                    TabCategorias.setEnabledAt(1, false);
-//                }else{
-//                    msjError(reps);
-//                    //txtNombreOp.requestFocus();
-//                }
-//            }else
-//            {
-//                //codigo de guardar o insertar
-//                reps = control.insertar(txtNombreProv.getText(), txtTelefonoProv.getText(), txtDireccionProv.getText(), txtNombreEmpresaProveedor.getText(),ImagenProveedor,true);
-//                if(reps.equals("ok")){
-//                    msjOk("Registro insertado correctamente");
-//                    listar("");
-//                    limpiar();
-//                }else{
-//                    msjError(reps);
-//                    txtNombreProveedor.requestFocus();
-//                    listar("");
-//                    limpiar();
-//                }
-//            }
-//        }
+        String reps;
+        //Verificar que el campo nombre no este vacio
+        if(txtNombreProv.getText().isBlank())
+        {
+            JOptionPane.showMessageDialog(this, "No debe de estar vacio el nombre","Sistema Administrativo SubMenu Proveedores",JOptionPane.WARNING_MESSAGE);
+            txtNombreProv.requestFocus();
+            return;
+        }
+        else
+        {
+            //se debe de sacar del else
+            if(accion.equals("editar"))
+            {
+                System.out.println(NombreOpAnt);
+                //codigo de editar o actualizar
+                reps = control.actualizar(Integer.parseInt(txtIdProveedor.getText()),NombreOpAnt,txtNombreProv.getText(), txtTelefonoProv.getText(), txtDireccionProv.getText(), txtNombreEmpresaProveedor.getText(),true);
+                if(reps.equals("ok")){
+                    msjOk("Registro editado correctamente");
+                    listar("");
+                    limpiar();
+                    //activar el tab 0
+                    TabCategorias.setSelectedIndex(0);
+                    TabCategorias.setEnabledAt(0, true);
+                    TabCategorias.setEnabledAt(1, false);
+                }else{
+                    msjError(reps);
+                    //txtNombreOp.requestFocus();
+                }
+            }else
+            {
+                //codigo de guardar o insertar
+                reps = control.insertar(txtNombreProv.getText(), txtTelefonoProv.getText(), txtDireccionProv.getText(), txtNombreEmpresaProveedor.getText(),true);
+                if(reps.equals("ok")){
+                    msjOk("Registro insertado correctamente");
+                    listar("");
+                    limpiar();
+                }else{
+                    msjError(reps);
+                    txtNombreProveedor.requestFocus();
+                    listar("");
+                    limpiar();
+                }
+            }
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
 
@@ -676,7 +596,6 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane TabCategorias;
     private javax.swing.JButton btnActivar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCargarImg;
     private javax.swing.JButton btnDesactivar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGuardar;
@@ -695,7 +614,6 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblProveedor;
     private javax.swing.JTextField txtDireccionProv;
     private javax.swing.JTextField txtIdProveedor;
     private javax.swing.JTextField txtNombreEmpresaProveedor;

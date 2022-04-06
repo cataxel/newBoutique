@@ -63,7 +63,6 @@ public class CategoriaControl {
             obj.setTelefonoProveedor(TelefonoProveedor);
             obj.setDireccionProveedor(DireccionProveedor);
             obj.setNombreEmpresaProveedor(NombreEmpresaProveedor);
-//            obj.setImagenProveedor(ImagenProveedor);
             obj.setActivo(activo);
             //insertar el objeto en la BD
             if(Datos.insertar(obj))
@@ -73,33 +72,32 @@ public class CategoriaControl {
             
         }
     }
-    public String actualizar(String NombreAnt,String NombreProveedor, String TelefonoProveedor, String DireccionProveedor, String NombreEmpresaProveedor,String ImagenProveedor,boolean activo) {
+    public String actualizar(int id,String NombreAnt, String NombreProveedor, String TelefonoProveedor, String DireccionProveedor, String NombreEmpresaProveedor, boolean activo) {
         //verificar si el usuario esta cambiando el nombre de la categoria
-        if (NombreProveedor.equals(NombreAnt)) {
+        if (!NombreProveedor.equals(NombreAnt)) {
             //llenar el objeto
-                obj.setNombreProveedor(NombreProveedor);
+            obj.setIdProveedor(id);
+            obj.setNombreProveedor(NombreProveedor);
             obj.setTelefonoProveedor(TelefonoProveedor);
             obj.setDireccionProveedor(DireccionProveedor);
             obj.setNombreEmpresaProveedor(NombreEmpresaProveedor);
-//            obj.setImagenProveedor(ImagenProveedor);
             obj.setActivo(activo);
-                //actualizar el objeto en la BD
-                if (Datos.actualizar(obj)) {
-                    return "ok";
-                } else {
-                    return "error al actualizar";
-                }
+            //actualizar el objeto en la BD
+            if (Datos.actualizar(obj)) {
+                return "ok";
+            } else {
+                return "error al actualizar";
+            }
         } else {
             if (!Datos.existe(NombreProveedor)) {
                 return "El nombre del proveedor no existe";
             } else {
                 //llenar el objeto
                 obj.setNombreProveedor(NombreProveedor);
-            obj.setTelefonoProveedor(TelefonoProveedor);
-            obj.setDireccionProveedor(DireccionProveedor);
-            obj.setNombreEmpresaProveedor(NombreEmpresaProveedor);
-//            obj.setImagenProveedor(ImagenProveedor);
-            obj.setActivo(activo);
+                obj.setTelefonoProveedor(TelefonoProveedor);
+                obj.setDireccionProveedor(DireccionProveedor);
+                obj.setNombreEmpresaProveedor(NombreEmpresaProveedor);
+                obj.setActivo(activo);
                 //actualizar el objeto en la BD
                 if (Datos.actualizar(obj)) {
                     return "ok";

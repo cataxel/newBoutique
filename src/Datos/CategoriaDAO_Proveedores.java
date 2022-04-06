@@ -29,7 +29,7 @@ public class CategoriaDAO_Proveedores {
     public List<Categoria> listar(String texto) {
         List<Categoria> registros = new ArrayList();
         try{
-            ps = con.getConexion().prepareStatement("select*from Proveedor");
+            ps = con.getConexion().prepareStatement("select * from Proveedor WHERE NombreProveedor like ?");
             ps.setString(1, "%" + texto +"%" );
             rs = ps.executeQuery();
             while(rs.next()){    
@@ -51,15 +51,14 @@ public class CategoriaDAO_Proveedores {
    
     public boolean insertar(Categoria obj) {
         respuesta = false;
-        String consulta = "insert into Proveedor(NombreProveedor, TelefonoProveedor, DireccionProveedor, NombreEmpresaProveedor) values(?, ?, ?, ?)";
+        String consulta = "insert into Proveedor(NombreProveedor, TelefonoProveedor, DireccionProveedor, NombreEmpresaProveedor, ActivoProveedor) values(?, ?, ?, ?,?)";
         try{
             ps = con.getConexion().prepareStatement(consulta);
             ps.setString(1,obj.getNombreProveedor());
             ps.setString(2, obj.getTelefonoProveedor());
             ps.setString(3, obj.getDireccionProveedor());
             ps.setString(4, obj.getNombreEmpresaProveedor());
-//            ps.setString(5, obj.getImagenProveedor());
-            ps.setBoolean(6,true);
+            ps.setBoolean(5,true);
             
             if (ps.executeUpdate() > 0)
                 respuesta = true;
@@ -83,8 +82,7 @@ public class CategoriaDAO_Proveedores {
             ps.setString(2, obj.getTelefonoProveedor());
             ps.setString(3, obj.getDireccionProveedor());
             ps.setString(4, obj.getNombreEmpresaProveedor());
-//            ps.setString(5, obj.getImagenProveedor());
-            ps.setInt(6,obj.getIdProveedor());
+            ps.setInt(5,obj.getIdProveedor());
             
             if (ps.executeUpdate() > 0)
                 respuesta = true;
@@ -101,7 +99,7 @@ public class CategoriaDAO_Proveedores {
   
     public boolean desactivar(int id) {
         respuesta = false;
-        String consulta = "UPDATE Proveedor SET NombreProveedor=?, Telefonoproveedor=?,DireccionProveedor=?,NombreEmpresaProveedor=? WHERE CveProveedor = ?";
+        String consulta = "UPDATE Proveedor SET ActivoProveedor=0 WHERE CveProveedor = ?";
         try{
             ps = con.getConexion().prepareStatement(consulta);
             ps.setInt(1,id);
@@ -121,7 +119,7 @@ public class CategoriaDAO_Proveedores {
    
     public boolean activar(int id) {
         respuesta = false;
-        String consulta = "UPDATE Proveedor SET NombreProveedor=?, Telefonoproveedor=?,DireccionProveedor=?,NombreEmpresaProveedor=? WHERE CveProveedor = ?";
+        String consulta = "UPDATE Proveedor SET ActivoProveedor=1 WHERE CveProveedor = ?";
         try{
             ps = con.getConexion().prepareStatement(consulta);
             ps.setInt(1,id);

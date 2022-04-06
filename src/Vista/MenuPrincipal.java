@@ -17,7 +17,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public static Crear_Cuenta frmReg;
     public static CRUD_ropa frmCRopa;
     public static CRUD_Usuarios frmCusers;
-    public static CRUD_Proveedores1 frmprovee;
+    public static paraProveedores frmprovee;
     public static Reportes reportes;
     Usuario mod;
     
@@ -400,7 +400,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
         if(frmprovee == null)
         {
-           frmprovee = new CRUD_Proveedores1();
+           frmprovee = new paraProveedores();
            frmprovee.setVisible(true);
         }
         

@@ -15,6 +15,9 @@ public class paraProveedores extends javax.swing.JFrame {
      */
     public paraProveedores() {
         initComponents();
+        CRUD_Proveedores1 obj = new CRUD_Proveedores1();
+        jDesktopPane1.add(obj);
+        obj.setVisible(true);
     }
 
     /**
@@ -29,12 +32,6 @@ public class paraProveedores extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jDesktopPane1.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                jDesktopPane1ComponentAdded(evt);
-            }
-        });
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -60,12 +57,6 @@ public class paraProveedores extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jDesktopPane1ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jDesktopPane1ComponentAdded
-        CRUD_Proveedores1 obj = new CRUD_Proveedores1();
-        jDesktopPane1.add(obj);
-        obj.setVisible(true);
-    }//GEN-LAST:event_jDesktopPane1ComponentAdded
 
     /**
      * @param args the command line arguments
