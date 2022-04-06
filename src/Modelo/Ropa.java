@@ -14,7 +14,16 @@ public class Ropa
     private double ganancia;
     private String genero;
     private String marca;
+    private String imagen;
     private int idtipoprenda;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 
     public int getIdropa() {
         return idropa;

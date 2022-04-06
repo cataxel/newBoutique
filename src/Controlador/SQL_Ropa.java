@@ -22,8 +22,8 @@ public class SQL_Ropa extends Conexion
     {
         PreparedStatement ps = null;
         Connection con = getConexion();
-        String consultaSQL = "INSERT INTO ropa(nombre, descripcion, precio_costo, precio_venta, ganancia, genero, marca, idtipoprenda)";
-        consultaSQL += "VALUES(?,?,?,?,?,?,?,?) ;";
+        String consultaSQL = "INSERT INTO ropa(nombre, descripcion, precio_costo, precio_venta, ganancia, genero, marca, imagen, idtipoprenda)";
+        consultaSQL += "VALUES(?,?,?,?,?,?,?,?,?) ;";
         try
         {
           ps=con.prepareStatement(consultaSQL);
@@ -34,7 +34,8 @@ public class SQL_Ropa extends Conexion
           ps.setDouble(5, ropa.getGanancia());
           ps.setString(6, ropa.getGenero());
           ps.setString(7, ropa.getMarca());
-          ps.setInt(8, ropa.getIdtipoprenda());
+          ps.setString(8, ropa.getImagen());
+          ps.setInt(9, ropa.getIdtipoprenda());
           ps.executeUpdate();
           return true;
         }catch(SQLException ex)
@@ -48,7 +49,7 @@ public class SQL_Ropa extends Conexion
     {
         PreparedStatement ps = null;
         Connection con = getConexion();
-        String consultaSQL = "UPDATE ropa SET nombre = ?, descripcion = ?, precio_costo = ?, precio_venta = ?, ganancia = ?, genero = ?, marca = ?, idtipoprenda = ? WHERE idropa = ?";
+        String consultaSQL = "UPDATE ropa SET nombre = ?, descripcion = ?, precio_costo = ?, precio_venta = ?, ganancia = ?, genero = ?, marca = ?,imagen = ?, idtipoprenda = ? WHERE idropa = ?";
         try
         {
           ps=con.prepareStatement(consultaSQL);
@@ -59,8 +60,9 @@ public class SQL_Ropa extends Conexion
           ps.setDouble(5, ropa.getGanancia());
           ps.setString(6, ropa.getGenero());
           ps.setString(7, ropa.getMarca());
-          ps.setInt(8, ropa.getIdtipoprenda());
-          ps.setInt(9, ropa.getIdropa());
+          ps.setString(8, ropa.getImagen());
+          ps.setInt(9, ropa.getIdtipoprenda());
+          ps.setInt(10, ropa.getIdropa());
           ps.executeUpdate();
           return true;
         }catch(SQLException ex)
