@@ -18,6 +18,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public static CRUD_ropa frmCRopa;
     public static CRUD_Usuarios frmCusers;
     public static paraProveedores frmprovee;
+    public static CRUDMarca frmmarca;
     public static Reportes reportes;
     Usuario mod;
     
@@ -85,6 +86,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnProveedores = new javax.swing.JButton();
         btnRopa = new javax.swing.JButton();
         btnReportes = new javax.swing.JButton();
+        btnOpiniones = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        btnMarcas = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuusuario = new javax.swing.JMenu();
         submenuInicioSesion = new javax.swing.JMenuItem();
@@ -179,6 +184,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnOpiniones.setBackground(new java.awt.Color(0, 153, 153));
+        btnOpiniones.setFont(new java.awt.Font("SimSun", 1, 14)); // NOI18N
+        btnOpiniones.setForeground(new java.awt.Color(255, 255, 255));
+        btnOpiniones.setText("Opiniones");
+        btnOpiniones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpinionesActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/iconosmenuP/opiniones.png"))); // NOI18N
+
+        btnMarcas.setBackground(new java.awt.Color(0, 153, 153));
+        btnMarcas.setFont(new java.awt.Font("SimSun", 1, 14)); // NOI18N
+        btnMarcas.setForeground(new java.awt.Color(255, 255, 255));
+        btnMarcas.setText("Marcas");
+        btnMarcas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMarcasActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/iconosmenuP/marcas.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -186,7 +215,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -197,19 +226,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(btnProveedores)
-                            .addGap(220, 220, 220)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGap(36, 36, 36)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnOpiniones))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnMarcas)))
+                            .addGap(44, 44, 44)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnUsuario)
-                                    .addComponent(btnRopa))))
-                        .addGap(226, 226, 226))))
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnRopa)
+                                .addComponent(btnUsuario))
+                            .addContainerGap(260, Short.MAX_VALUE)))))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -232,7 +272,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnProveedores)))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnOpiniones)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMarcas))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
@@ -240,11 +289,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         desktopPane.add(jPanel1);
-        jPanel1.setBounds(0, 0, 640, 420);
+        jPanel1.setBounds(0, 0, 640, 410);
 
         menuBar.setBackground(new java.awt.Color(86, 153, 153));
 
@@ -323,7 +372,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         pack();
@@ -334,6 +383,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         {
            frmReg = new Crear_Cuenta();
            frmReg.setVisible(true);
+           dispose();
         }
     }//GEN-LAST:event_submenuRegistrarActionPerformed
 
@@ -342,6 +392,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         {
            frmLog = new InicioSesion();
            frmLog.setVisible(true);
+           dispose();
         }
     }//GEN-LAST:event_submenuInicioSesionActionPerformed
 
@@ -354,6 +405,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         {
            frmCRopa = new CRUD_ropa(mod);
            frmCRopa.setVisible(true);
+           dispose();
         }
     }//GEN-LAST:event_submenuRopaGestionActionPerformed
 
@@ -362,6 +414,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         {
             frmCusers = new CRUD_Usuarios(mod);
             frmCusers.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_submenugestionusersActionPerformed
 
@@ -378,6 +431,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (reportes == null) {
             reportes = new Reportes(mod);
             reportes.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_btnReportesActionPerformed
 
@@ -386,6 +440,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         {
             frmCusers = new CRUD_Usuarios(mod);
             frmCusers.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_btnUsuarioActionPerformed
 
@@ -394,6 +449,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         {
            frmCRopa = new CRUD_ropa(mod);
            frmCRopa.setVisible(true);
+           dispose();
         }
     }//GEN-LAST:event_btnRopaActionPerformed
 
@@ -402,11 +458,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
         {
            frmprovee = new paraProveedores();
            frmprovee.setVisible(true);
+           dispose();
         }
         
         /*CRUD_Proveedores1 cp1=new CRUD_Proveedores1();
         cp1.setVisible(true);*/
     }//GEN-LAST:event_btnProveedoresActionPerformed
+
+    private void btnOpinionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpinionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOpinionesActionPerformed
+
+    private void btnMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarcasActionPerformed
+        if(frmmarca == null)
+        {
+           frmmarca = new CRUDMarca();
+           frmmarca.setVisible(true);
+           dispose();
+        }
+    }//GEN-LAST:event_btnMarcasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -447,6 +517,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu MenuConsultas;
+    private javax.swing.JButton btnMarcas;
+    private javax.swing.JButton btnOpiniones;
     private javax.swing.JButton btnProveedores;
     private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnRopa;
@@ -457,7 +529,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
