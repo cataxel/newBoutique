@@ -33,6 +33,7 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
      */
     public final CategoriaControl control;
     String accion;
+    private Usuario user;
     private String ImagenProveedor;
     private String NombreOpAnt;
     public CRUD_Proveedores1() {
@@ -102,6 +103,7 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
         JPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        txtVolver = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtNombreProveedor = new javax.swing.JTextField();
         BtnBuscar = new javax.swing.JButton();
@@ -143,18 +145,29 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(0, 51, 102));
         jLabel1.setText("Listado de Proveedores:");
 
+        txtVolver.setText("< Volver al menu");
+        txtVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtVolverMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(txtVolver))
                 .addGap(0, 239, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(txtVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -239,7 +252,7 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
             JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
             .addGroup(JPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,7 +458,7 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         TabCategorias.addTab("Operaciones", jPanel2);
@@ -458,9 +471,7 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(TabCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(TabCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
         );
 
         pack();
@@ -586,6 +597,14 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void txtVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseClicked
+        MenuPrincipal obm = new MenuPrincipal(user);
+        obm.setVisible(true);
+        /*dispose();
+        MenuPrincipal.frmCusers = null;
+        */dispose();
+    }//GEN-LAST:event_txtVolverMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBuscar;
@@ -620,5 +639,6 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNombreProv;
     private javax.swing.JTextField txtNombreProveedor;
     private javax.swing.JTextField txtTelefonoProv;
+    private javax.swing.JLabel txtVolver;
     // End of variables declaration//GEN-END:variables
 }

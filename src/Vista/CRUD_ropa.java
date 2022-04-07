@@ -82,7 +82,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btneditar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -164,20 +164,45 @@ public class CRUD_ropa extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaropa);
 
+        jLabel1.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Listado de Ropa");
 
+        jButton1.setBackground(new java.awt.Color(0, 153, 153));
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Encontrar");
 
+        jButton2.setBackground(new java.awt.Color(0, 153, 153));
+        jButton2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Nuevo");
 
-        jButton3.setText("Editar");
+        btneditar.setBackground(new java.awt.Color(0, 153, 153));
+        btneditar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btneditar.setForeground(new java.awt.Color(238, 238, 238));
+        btneditar.setText("Editar");
+        btneditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneditarActionPerformed(evt);
+            }
+        });
 
+        jButton4.setBackground(new java.awt.Color(0, 153, 153));
+        jButton4.setForeground(new java.awt.Color(238, 238, 238));
         jButton4.setText("Desactivar");
 
+        jButton5.setBackground(new java.awt.Color(0, 153, 153));
+        jButton5.setForeground(new java.awt.Color(238, 238, 238));
         jButton5.setText("Activar");
 
+        jLabel3.setForeground(new java.awt.Color(0, 153, 153));
         jLabel3.setText("Registros");
 
+        cmbfiltro.setBackground(new java.awt.Color(0, 153, 153));
+        cmbfiltro.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        cmbfiltro.setForeground(new java.awt.Color(238, 238, 238));
         cmbfiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id", "Nombre", "Genero", "Marca", "Clase", "Tipo" }));
 
         txtbuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -194,6 +219,9 @@ public class CRUD_ropa extends javax.swing.JFrame {
             }
         });
 
+        btnbuscar.setBackground(new java.awt.Color(0, 153, 153));
+        btnbuscar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnbuscar.setForeground(new java.awt.Color(238, 238, 238));
         btnbuscar.setText("Buscar");
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,6 +229,9 @@ public class CRUD_ropa extends javax.swing.JFrame {
             }
         });
 
+        btnRestablecer.setBackground(new java.awt.Color(0, 153, 153));
+        btnRestablecer.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnRestablecer.setForeground(new java.awt.Color(238, 238, 238));
         btnRestablecer.setText("Restablecer tabla");
         btnRestablecer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,7 +267,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
                                 .addGap(43, 43, 43)
                                 .addComponent(btnRestablecer, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                                 .addGap(64, 64, 64)
-                                .addComponent(jButton3))
+                                .addComponent(btneditar))
                             .addGroup(ListadoLayout.createSequentialGroup()
                                 .addComponent(jButton4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -270,7 +301,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
                 .addGroup(ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3)
+                    .addComponent(btneditar)
                     .addComponent(btnRestablecer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -331,6 +362,8 @@ public class CRUD_ropa extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable1);
 
+        btnseleccionartalla.setBackground(new java.awt.Color(0, 153, 153));
+        btnseleccionartalla.setForeground(new java.awt.Color(238, 238, 238));
         btnseleccionartalla.setText("Seleccionar Tallas");
         btnseleccionartalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,6 +371,8 @@ public class CRUD_ropa extends javax.swing.JFrame {
             }
         });
 
+        btnAgregar1.setBackground(new java.awt.Color(0, 153, 153));
+        btnAgregar1.setForeground(new java.awt.Color(238, 238, 238));
         btnAgregar1.setText("Agregar");
         btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -345,6 +380,8 @@ public class CRUD_ropa extends javax.swing.JFrame {
             }
         });
 
+        btnModificar.setBackground(new java.awt.Color(0, 153, 153));
+        btnModificar.setForeground(new java.awt.Color(238, 238, 238));
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -352,6 +389,8 @@ public class CRUD_ropa extends javax.swing.JFrame {
             }
         });
 
+        btnEliminar.setBackground(new java.awt.Color(0, 153, 153));
+        btnEliminar.setForeground(new java.awt.Color(238, 238, 238));
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,6 +398,8 @@ public class CRUD_ropa extends javax.swing.JFrame {
             }
         });
 
+        btnLimpiar.setBackground(new java.awt.Color(0, 153, 153));
+        btnLimpiar.setForeground(new java.awt.Color(238, 238, 238));
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -366,6 +407,8 @@ public class CRUD_ropa extends javax.swing.JFrame {
             }
         });
 
+        btbagregartalla.setBackground(new java.awt.Color(0, 153, 153));
+        btbagregartalla.setForeground(new java.awt.Color(238, 238, 238));
         btbagregartalla.setText("Agregar talla");
         btbagregartalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,6 +416,8 @@ public class CRUD_ropa extends javax.swing.JFrame {
             }
         });
 
+        btnlimpiartallas.setBackground(new java.awt.Color(0, 153, 153));
+        btnlimpiartallas.setForeground(new java.awt.Color(238, 238, 238));
         btnlimpiartallas.setText("Limpiar");
         btnlimpiartallas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -380,6 +425,8 @@ public class CRUD_ropa extends javax.swing.JFrame {
             }
         });
 
+        btnvolver.setBackground(new java.awt.Color(0, 153, 153));
+        btnvolver.setForeground(new java.awt.Color(238, 238, 238));
         btnvolver.setText("Volver");
         btnvolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,6 +444,8 @@ public class CRUD_ropa extends javax.swing.JFrame {
 
         cmbtipo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una clase de prenda primero" }));
 
+        btnAgregarImagen.setBackground(new java.awt.Color(0, 153, 153));
+        btnAgregarImagen.setForeground(new java.awt.Color(238, 238, 238));
         btnAgregarImagen.setText("Agregar imagen");
         btnAgregarImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -592,7 +641,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
                         .addGroup(OperacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
                             .addComponent(cmbtipo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 46, Short.MAX_VALUE))
+                        .addGap(0, 49, Short.MAX_VALUE))
                     .addComponent(lblRopa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(OperacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -641,7 +690,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
                 txtID.setText(String.valueOf(id));
                 txtNombre.setText(rs.getString(2));
                 txtDescripcion.setText(rs.getString(3));
-                //pintarImagen(imagenRopa, "src/presentacion/img/categorias/"+rs.getString(8));
+                //pintarImagen(lblRopa, "/home/axel/NetBeansProjects/ProyectBoutique/src/Vista/img/"+rs.getString(8));
                 txtpreciocosto.setText(rs.getString(4));
                 txtprecioventa.setText(rs.getString(5));
                 //cmbtalla.setSelectedItem(rs.getString("talla"));
@@ -674,7 +723,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
                     }
                 }
                 cmbtipo1.setSelectedItem(rs.getString(9));
-
+                
                 DefaultTableModel modelotabla = (DefaultTableModel) jTable1.getModel();
                 modelotabla.setRowCount(0);
                 ps2 = con2.prepareStatement(consulta_talla);
@@ -1291,9 +1340,17 @@ public class CRUD_ropa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarImagenActionPerformed
 
     private void txtVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseClicked
-        dispose();
-        MenuPrincipal.frmCRopa = null;
+        MenuPrincipal obm = new MenuPrincipal(user);
+        obm.setVisible(true);
+        /*dispose();
+        MenuPrincipal.frmCusers = null;
+        */dispose();
     }//GEN-LAST:event_txtVolverMouseClicked
+
+    private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
+        
+        
+    }//GEN-LAST:event_btneditarActionPerformed
 
     public void pintarImagen(JLabel lbl, String ruta){
          ImageIcon imagen = new ImageIcon(ruta);
@@ -1551,6 +1608,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRestablecer;
     private javax.swing.JButton btnbuscar;
+    private javax.swing.JButton btneditar;
     private javax.swing.JButton btnlimpiartallas;
     private javax.swing.JButton btnseleccionartalla;
     private javax.swing.JButton btnvolver;
@@ -1559,7 +1617,6 @@ public class CRUD_ropa extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbtipo1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;

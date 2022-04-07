@@ -305,12 +305,12 @@ public class CRUDMarca extends javax.swing.JFrame {
         String nombre = txtNombre.getText();
         if (ban) {
             if (nombre.equals("")) {
-                JOptionPane.showMessageDialog(null, "Debes de ingresar un nombre a la prenda");
+                JOptionPane.showMessageDialog(null, "Debes de ingresar un nombre");
             } else {
                 mod.setNombremarca(nombre);
                 String contra = txtCodigo.getText();
                 if (contra.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Debes de ingresar una contraseña");
+                    JOptionPane.showMessageDialog(null, "Debes de ingresar un codigo");
                 } else {
                     mod.setCodigomarca(Integer.parseInt(contra));
 

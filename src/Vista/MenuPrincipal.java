@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.Opiniones;
 import Modelo.Usuario;
 
 /**
@@ -20,6 +21,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public static paraProveedores frmprovee;
     public static CRUDMarca frmmarca;
     public static Reportes reportes;
+    public static CRUDOpinion opiniones;
     Usuario mod;
     
        
@@ -466,7 +468,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
     private void btnOpinionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpinionesActionPerformed
-        // TODO add your handling code here:
+        if(opiniones==null)
+        {
+            opiniones = new CRUDOpinion();
+            opiniones.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_btnOpinionesActionPerformed
 
     private void btnMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarcasActionPerformed
