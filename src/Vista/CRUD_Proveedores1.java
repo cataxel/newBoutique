@@ -410,11 +410,11 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel11)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(72, 72, 72)
                                 .addComponent(btnCancelar)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel10)
@@ -471,7 +471,7 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TabCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(TabCategorias)
         );
 
         pack();
@@ -499,10 +499,8 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
             txtNombreProv.setText(JTListadoCategorias.getValueAt(JTListadoCategorias.getSelectedRow(),1).toString());
             NombreOpAnt = (JTListadoCategorias.getValueAt(JTListadoCategorias.getSelectedRow(),1).toString());
             txtTelefonoProv.setText(JTListadoCategorias.getValueAt(JTListadoCategorias.getSelectedRow(),2).toString());
-            txtDireccionProv.setText(JTListadoCategorias.getValueAt(JTListadoCategorias.getSelectedRow(),2).toString());
-            txtNombreEmpresaProveedor.setText(JTListadoCategorias.getValueAt(JTListadoCategorias.getSelectedRow(),2).toString());
-//            pintarImagen(lblProveedor, "src/presentacion/img/categorias/"+JTListadoCategorias.getValueAt(JTListadoCategorias.getSelectedRow(),4).toString());
-
+            txtDireccionProv.setText(JTListadoCategorias.getValueAt(JTListadoCategorias.getSelectedRow(),3).toString());
+            txtNombreEmpresaProveedor.setText(JTListadoCategorias.getValueAt(JTListadoCategorias.getSelectedRow(),4).toString());            
             //vamos a mostrar el TAB 1 y desactivar el TAB 0
             TabCategorias.setSelectedIndex(1);
             TabCategorias.setEnabledAt(1, true);
@@ -539,7 +537,24 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDesactivarActionPerformed
 
     private void btnActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivarActionPerformed
+        String respuesta = "";
+        //Preguntar que se haya seleccionado un elemento
+        if(JTListadoCategorias.getSelectedRowCount()==1){
+            //obtener el ID
+            txtIdProveedor.setText(JTListadoCategorias.getValueAt(JTListadoCategorias.getSelectedRow(),0).toString());
+            txtNombreProv.setText(JTListadoCategorias.getValueAt(JTListadoCategorias.getSelectedRow(),1).toString());
+            if(JOptionPane.showConfirmDialog(this, "¿Deseas activar la categoria?"+txtNombreProv.getText(),"Sistema Administrativo SubMenu Proveedores",JOptionPane.YES_NO_OPTION)==0){
+                respuesta = control.activar(Integer.parseInt(txtIdProveedor.getText()));
+                if(respuesta.equals("OK")){
+                    msjOk("Registro activar");
+                    limpiar();
+                }else{
+                    msjError(respuesta);
+                }
+            }
 
+        }else
+        JOptionPane.showMessageDialog(this, "Debes seleccionar un registro","Sistema Administrativo SubMenu Proveedores",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnActivarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
