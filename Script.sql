@@ -197,3 +197,11 @@ primary key(idMarca)
 insert into Marca(Codigomarca, nombreMarca) values('221','H&M');
 select * from Marca;
 
+//opiniones
+create table Opinion(
+	idopinion int auto_increment,
+	Nombre varchar (50) not null,
+	Opinion varchar (500) not null,
+	primary key (idopinion)
+);
+select * from Opinion ;
