@@ -41,9 +41,11 @@ public class CRUD_ropa extends javax.swing.JFrame {
     ButtonGroup btnGr1;
     private Usuario user;
     private String imagenRopa;
+    private MenuPrincipal menuprincipal;
     
     public CRUD_ropa(Usuario user) {
         this.user=user;
+        System.out.println(user);
         initComponents();
         btnGr = new ButtonGroup();
         btnGr1 = new ButtonGroup();
@@ -727,7 +729,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
                     }
                 }
                 cmbtipo1.setSelectedItem(rs.getString(9));
-                pintarImagen(lblRopa, "/home/axel/NetBeansProjects/ProyectBoutique/src/Vista/img/"+rs.getString(10));
+                pintarImagen(lblRopa, "/src/Vista/img/"+rs.getString(10));
                 
                 DefaultTableModel modelotabla = (DefaultTableModel) jTable1.getModel();
                 modelotabla.setRowCount(0);
@@ -1350,11 +1352,17 @@ public class CRUD_ropa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarImagenActionPerformed
 
     private void txtVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseClicked
-        MenuPrincipal obm = new MenuPrincipal(user);
+        if(menuprincipal == null)
+        {
+            System.out.println(user);
+           menuprincipal = new MenuPrincipal(user);
+           menuprincipal.setVisible(true);
+           dispose();
+        }
+        /*MenuPrincipal obm = new MenuPrincipal(user);
         obm.setVisible(true);
-        /*dispose();
         MenuPrincipal.frmCusers = null;
-        */dispose();
+        dispose();*/
     }//GEN-LAST:event_txtVolverMouseClicked
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed

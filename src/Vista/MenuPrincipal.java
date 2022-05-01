@@ -5,8 +5,8 @@
  */
 package Vista;
 
-import Controlador.Opiniones;
-import Modelo.Usuario;
+
+import Modelo.*;
 
 /**
  *
@@ -22,14 +22,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public static CRUDMarca frmmarca;
     public static Reportes reportes;
     public static CRUDOpinion opiniones;
-    Usuario mod;
+    Usuario mod = new Usuario();
     
        
     public MenuPrincipal(Usuario modusr)
     {
+        
+        this.mod.setId_tipo(2);
+        System.out.println(mod.getId_tipo());
         initComponents();
         if(modusr!=null){
-            this.mod=modusr;
+            //this.mod=modusr;
+            
             //Usuario ya inicio sesion y checas que permisos perimiso tiene
             //es decir todos los if que tiene con mod.getIDtipo
             if(mod.getId_tipo()==1){
