@@ -4,6 +4,18 @@
  */
 package Vista;
 
+import Controlador.SQL_Ventas;
+import Modelo.Ventas;
+import DataBase.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author axel
@@ -16,7 +28,61 @@ public class CRUDVenta extends javax.swing.JFrame {
     public CRUDVenta() {
         initComponents();
     }
-
+    private void CargarTabla()
+    {
+        SQL_Ventas modSql = new SQL_Ventas();
+        DefaultTableModel modelotabla = (DefaultTableModel) tablaVentas.getModel();
+        modelotabla.setRowCount(0);
+        PreparedStatement ps;
+        ResultSet rs;
+        java.sql.ResultSetMetaData rsmd;
+        int columnas;
+        //724 tamano tabla de forma horizontal
+        int[] anchos = {40,100,150,50,50,50,60,70,80,110};
+        for(int i = 0; i<tablaVentas.getColumnCount(); i++)
+        {
+            tablaVentas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+        }
+        try
+        {
+            Connection con = Conexion.getCon();
+            //String consultaSQL = "SELECT idropa, nombre, descripcion, precio, genero, marca FROM ropa";
+            String consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas;";
+            ps = con.prepareStatement(consultaSQL);
+            rs = ps.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            Object[] fila = new Object[columnas];
+            while(rs.next())
+            {
+                fila[0] = rs.getInt(1);
+                fila[1] = rs.getInt(2);
+                fila[2] = rs.getString(3);
+                fila[3] = rs.getDate(4);
+                fila[4] = rs.getDouble(5);
+                fila[5] = rs.getDouble(6);
+                fila[6] = rs.getDouble(7);
+                fila[7] = rs.getBoolean(8);
+                modelotabla.addRow(fila);
+            }
+            Registros.setText("Mostrados " + modSql.total() );
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }
+    
+    private void limpiar(){
+        id.setText("ID");
+        txtIdRopa.setText("");
+        txtDescuento.setText("");
+        txtFecha.setText("");
+        txtFolioVenta.setText("");
+        txtIva.setText("");
+        txtTotal.setText("");
+        btnEstado.setSelected(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,17 +97,34 @@ public class CRUDVenta extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cmbfiltro = new javax.swing.JComboBox<>();
-        txtbuscar = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
+        btnNuevo = new javax.swing.JButton();
+        btnActivar = new javax.swing.JButton();
+        btnDesactivar = new javax.swing.JButton();
+        btnRestablecerTabla = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        Registros = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
+        tablaVentas = new javax.swing.JTable();
         OperacionesPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
+        idropa = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtFolioVenta = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtDescuento = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtIva = new javax.swing.JTextField();
+        btnAgregar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        btnEstado = new javax.swing.JRadioButton();
+        txtIdRopa = new javax.swing.JTextField();
+        btnRopa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,42 +134,59 @@ public class CRUDVenta extends javax.swing.JFrame {
 
         cmbfiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "idVenta", "idRopa", "folioVenta", "Fecha", "Total", "Descuento", "IVA", "Estado" }));
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Nuevo");
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
 
-        jButton4.setBackground(new java.awt.Color(0, 153, 153));
-        jButton4.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Activar");
+        btnNuevo.setBackground(new java.awt.Color(0, 153, 153));
+        btnNuevo.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
-        jButton5.setBackground(new java.awt.Color(0, 153, 153));
-        jButton5.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Desactivar");
+        btnActivar.setBackground(new java.awt.Color(0, 153, 153));
+        btnActivar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        btnActivar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActivar.setText("Activar");
 
-        jButton6.setBackground(new java.awt.Color(0, 153, 153));
-        jButton6.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Editar");
+        btnDesactivar.setBackground(new java.awt.Color(0, 153, 153));
+        btnDesactivar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        btnDesactivar.setForeground(new java.awt.Color(255, 255, 255));
+        btnDesactivar.setText("Desactivar");
 
-        jButton7.setBackground(new java.awt.Color(0, 153, 153));
-        jButton7.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Restablecer tabla");
+        btnRestablecerTabla.setBackground(new java.awt.Color(0, 153, 153));
+        btnRestablecerTabla.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        btnRestablecerTabla.setForeground(new java.awt.Color(255, 255, 255));
+        btnRestablecerTabla.setText("Restablecer tabla");
+        btnRestablecerTabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestablecerTablaActionPerformed(evt);
+            }
+        });
 
-        jButton8.setBackground(new java.awt.Color(0, 153, 153));
-        jButton8.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Buscar");
+        btnBuscar.setBackground(new java.awt.Color(0, 153, 153));
+        btnBuscar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Registros.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        Registros.setForeground(new java.awt.Color(51, 51, 255));
+        Registros.setText("Registros");
+
+        tablaVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "idVenta", "idRopa", "FolioVenta", "Fecha", "Total", "Descuento", "IVA", "Estado"
@@ -100,11 +200,12 @@ public class CRUDVenta extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-
-        jLabel3.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel3.setText("Registros");
+        tablaVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaVentasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaVentas);
 
         javax.swing.GroupLayout ListadoPanelLayout = new javax.swing.GroupLayout(ListadoPanel);
         ListadoPanel.setLayout(ListadoPanelLayout);
@@ -117,27 +218,26 @@ public class CRUDVenta extends javax.swing.JFrame {
                     .addGroup(ListadoPanelLayout.createSequentialGroup()
                         .addComponent(cmbfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8))
+                        .addComponent(btnBuscar))
                     .addGroup(ListadoPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(ListadoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
                             .addGroup(ListadoPanelLayout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(btnNuevo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton7)
+                                .addComponent(btnRestablecerTabla)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton6)
+                                .addComponent(btnDesactivar)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton4)))))
+                                .addComponent(btnActivar)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(ListadoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Registros, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ListadoPanelLayout.setVerticalGroup(
@@ -149,33 +249,147 @@ public class CRUDVenta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ListadoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8))
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(ListadoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton7)
-                    .addComponent(jButton6)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(0, 8, Short.MAX_VALUE))
+                    .addComponent(btnNuevo)
+                    .addComponent(btnRestablecerTabla)
+                    .addComponent(btnDesactivar)
+                    .addComponent(btnActivar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Registros)
+                .addGap(0, 18, Short.MAX_VALUE))
         );
 
         paneles.addTab("Listado", ListadoPanel);
+
+        jLabel4.setText("Datos de Ventas");
+
+        id.setText("ID");
+
+        idropa.setText("ID-Ropa");
+
+        jLabel7.setText("Folia Venta");
+
+        jLabel8.setText("Fecha");
+
+        txtFecha.setText("yy-mm-dd");
+
+        jLabel9.setText("Descuento");
+
+        jLabel10.setText("Total");
+
+        jLabel11.setText("IVA");
+
+        txtIva.setText("16");
+
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Cancelar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        btnEstado.setSelected(true);
+        btnEstado.setText("Activo");
+
+        btnRopa.setText("...");
+        btnRopa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRopaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout OperacionesPanelLayout = new javax.swing.GroupLayout(OperacionesPanel);
         OperacionesPanel.setLayout(OperacionesPanelLayout);
         OperacionesPanelLayout.setHorizontalGroup(
             OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 636, Short.MAX_VALUE)
+            .addGroup(OperacionesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(OperacionesPanelLayout.createSequentialGroup()
+                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(idropa, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIdRopa, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRopa))
+                    .addGroup(OperacionesPanelLayout.createSequentialGroup()
+                        .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11))
+                        .addGap(18, 18, 18)
+                        .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtFolioVenta)
+                                .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                            .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(OperacionesPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(OperacionesPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtDescuento))
+                            .addComponent(btnEstado))))
+                .addContainerGap(16, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OperacionesPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(18, 18, 18)
+                .addComponent(btnAgregar)
+                .addGap(32, 32, 32))
         );
         OperacionesPanelLayout.setVerticalGroup(
             OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addGroup(OperacionesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(id)
+                    .addComponent(idropa)
+                    .addComponent(txtIdRopa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRopa))
+                .addGap(18, 18, 18)
+                .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtFolioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEstado)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
+                .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregar)
+                    .addComponent(jButton3))
+                .addContainerGap())
         );
 
         paneles.addTab("Operaciones", OperacionesPanel);
@@ -188,11 +402,251 @@ public class CRUDVenta extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(paneles)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(paneles, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        paneles.setSelectedIndex(1);
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnRestablecerTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestablecerTablaActionPerformed
+        CargarTabla();
+    }//GEN-LAST:event_btnRestablecerTablaActionPerformed
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        DefaultTableModel modelotabla = (DefaultTableModel) tablaVentas.getModel();
+        modelotabla.setRowCount(0);
+        PreparedStatement ps;
+        ResultSet rs;
+        ResultSetMetaData rsmd;
+        String busqueda = txtBuscar.getText();
+        if (busqueda.trim().equals("")) {
+            CargarTabla();
+        } else {
+            int columnas;
+            int[] anchos = {30, 100, 150, 40, 30, 60, 40, 70, 80, 124};
+            for (int i = 0; i < tablaVentas.getColumnCount(); i++) {
+                tablaVentas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+            }
+            try {
+                Connection con = Conexion.getCon();
+                String consultaSQL = "";
+                String filtro = cmbfiltro.getSelectedItem().toString();
+                if (filtro.equals("idVenta")) {
+                    consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE idVenta ='" + busqueda + "' ";
+                } else {
+                    if (filtro.equals("idRopa")) {
+                        consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE idRopa ='" + busqueda + "' ";
+                    } else {
+                        if (filtro.equals("folioVenta")) {
+                            consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE folioVenta ='" + busqueda + "' ";
+                        } else {
+                            if (filtro.equals("Fecha")) {
+                                consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE Fecha ='" + busqueda + "' ";
+                            } else {
+                                if (filtro.equals("Total")) {
+                                    consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE Total ='" + busqueda + "' ";
+                                } else {
+                                    if (filtro.equals("Descuento")) {
+                                        consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE Descuento ='" + busqueda + "' ";
+                                    } else {
+                                        if (filtro.equals("IVA")) {
+                                            consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE IVA ='" + busqueda + "' ";
+                                        } else {
+                                            if (filtro.equals("Estado")) {
+                                                consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE Estado ='" + busqueda + "' ";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                ps = con.prepareStatement(consultaSQL);
+                rs = ps.executeQuery();
+                rsmd = rs.getMetaData();
+                columnas = rsmd.getColumnCount();
+                while (rs.next()) {
+                    Object[] fila = new Object[columnas];
+                    for (int indice = 0; indice < columnas; indice++) {
+                        fila[indice] = rs.getObject(indice + 1);
+                    }
+                    modelotabla.addRow(fila);
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e.toString());
+            }
+        }
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        DefaultTableModel modelotabla = (DefaultTableModel) tablaVentas.getModel();
+        modelotabla.setRowCount(0);
+        PreparedStatement ps;
+        ResultSet rs;
+        ResultSetMetaData rsmd;
+        String busqueda = txtBuscar.getText();
+        if (busqueda.trim().equals("")) {
+            CargarTabla();
+        } else {
+            int columnas;
+            int[] anchos = {30, 100, 150, 40, 30, 60, 40, 70, 80, 124};
+            for (int i = 0; i < tablaVentas.getColumnCount(); i++) {
+                tablaVentas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+            }
+            try {
+                Connection con = Conexion.getCon();
+                String consultaSQL = "";
+                String filtro = cmbfiltro.getSelectedItem().toString();
+                if (filtro.equals("idVenta")) {
+                    consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE idVenta ='" + busqueda + "' ";
+                } else {
+                    if (filtro.equals("idRopa")) {
+                        consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE idRopa ='" + busqueda + "' ";
+                    } else {
+                        if (filtro.equals("folioVenta")) {
+                            consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE folioVenta ='" + busqueda + "' ";
+                        } else {
+                            if (filtro.equals("Fecha")) {
+                                consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE Fecha ='" + busqueda + "' ";
+                            } else {
+                                if (filtro.equals("Total")) {
+                                    consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE Total ='" + busqueda + "' ";
+                                } else {
+                                    if (filtro.equals("Descuento")) {
+                                        consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE Descuento ='" + busqueda + "' ";
+                                    } else {
+                                        if (filtro.equals("IVA")) {
+                                            consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE IVA ='" + busqueda + "' ";
+                                        } else {
+                                            if (filtro.equals("Estado")) {
+                                                consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE Estado ='" + busqueda + "' ";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                ps = con.prepareStatement(consultaSQL);
+                rs = ps.executeQuery();
+                rsmd = rs.getMetaData();
+                columnas = rsmd.getColumnCount();
+                while (rs.next()) {
+                    Object[] fila = new Object[columnas];
+                    for (int indice = 0; indice < columnas; indice++) {
+                        fila[indice] = rs.getObject(indice + 1);
+                    }
+                    modelotabla.addRow(fila);
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e.toString());
+            }
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        SQL_Ventas modsql = new SQL_Ventas();
+        Ventas mod = new Ventas();
+        String FolioVentas = txtFolioVenta.getText();
+        if (FolioVentas.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar el Folio de Venta");
+        } else {
+            mod.setFolioVenta(FolioVentas);
+            String fecha = txtFecha.getText();
+            if (txtFecha.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Debes ingresar una fecha");
+            } else {
+                mod.setFecha(fecha);
+                Double Total = Double.parseDouble(txtTotal.getText());
+                if(txtTotal.equals("")){
+                    JOptionPane.showMessageDialog(null, "Debes ingresar un Total");
+                }else{
+                    mod.setTotal(Total);
+                    Double Descuento = Double.parseDouble(txtDescuento.getText());
+                    if(txtDescuento.equals("")){
+                        JOptionPane.showMessageDialog(null, "Debes ingresar un Descuento");
+                    }
+                    else{
+                        mod.setDescuento(Descuento);
+                        Double Iva = Double.parseDouble(txtIva.getText());
+                        if(txtIva.equals("")){
+                            JOptionPane.showMessageDialog(null, "");
+                        } else {
+                            mod.setIva(Iva);
+                            Boolean estado = btnEstado.isSelected();
+                            mod.setEstado(estado);
+                            int idRopa = Integer.parseInt(txtIdRopa.getText());
+                            if (txtIdRopa.equals("")) {
+                                JOptionPane.showMessageDialog(null, "Debes ingresar un ID de ropa");
+                            } else {
+                                mod.setIdRopa(idRopa);
+                                DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
+                                if (modsql.Agregar(mod)) {
+                                    JOptionPane.showMessageDialog(this, "Venta guardada", "Ventas", JOptionPane.INFORMATION_MESSAGE);
+                                    limpiar();
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "Error al guardar la venta", "Ventas", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        paneles.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void tablaVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVentasMouseClicked
+        //Este metodo es para que se le pueda hacer clic a la tabla
+        try {
+            int fila = tablaVentas.getSelectedRow();
+            int id = Integer.parseInt(tablaVentas.getValueAt(fila, 0).toString());
+            PreparedStatement ps, ps2;
+            ResultSet rs, rs2;
+            ResultSetMetaData rsm;
+            Connection con = Conexion.getCon();
+            Connection con2 = Conexion.getCon();
+            String consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE idVenta =?";
+
+            ps = con.prepareStatement(consultaSQL);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                this.id.setText(String.valueOf(id));
+                txtIdRopa.setText(rs.getString(2));
+                txtFolioVenta.setText(rs.getString(3));
+                txtFecha.setText(rs.getString(4));
+                txtTotal.setText(rs.getString(5));
+                txtDescuento.setText(rs.getString(6));
+                txtIva.setText(rs.getString(7));
+                btnEstado.setSelected(rs.getBoolean(8));
+
+                DefaultTableModel modelotabla = (DefaultTableModel) tablaVentas.getModel();
+                modelotabla.setRowCount(0);
+
+                //Activar tab 0 y desactivar tab 1
+                paneles.setSelectedIndex(1); // selecciona el tab(0)
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }//GEN-LAST:event_tablaVentasMouseClicked
+
+    private void btnRopaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRopaActionPerformed
+        RopaInf Jd = new RopaInf(null,true);
+        Jd.setVisible(true);
+    }//GEN-LAST:event_btnRopaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,19 +686,36 @@ public class CRUDVenta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ListadoPanel;
     private javax.swing.JPanel OperacionesPanel;
+    private javax.swing.JLabel Registros;
+    private javax.swing.JButton btnActivar;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnDesactivar;
+    private javax.swing.JRadioButton btnEstado;
+    private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnRestablecerTabla;
+    private javax.swing.JButton btnRopa;
     private javax.swing.JComboBox<String> cmbfiltro;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JLabel id;
+    private javax.swing.JLabel idropa;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTabbedPane paneles;
-    private javax.swing.JTextField txtbuscar;
+    private javax.swing.JTable tablaVentas;
+    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtDescuento;
+    private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtFolioVenta;
+    private javax.swing.JTextField txtIdRopa;
+    private javax.swing.JTextField txtIva;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

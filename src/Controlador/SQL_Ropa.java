@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import DataBase.Conexion;
 import Modelo.Ropa;
+import javax.swing.JComboBox;
 
 public class SQL_Ropa extends Conexion
 {
@@ -92,4 +93,5 @@ public class SQL_Ropa extends Conexion
         
         return numeroderegistros;
     }
+    
 }
