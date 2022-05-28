@@ -112,7 +112,9 @@ create table ropa(
     imagen varchar(300) not null,
     idtipoprenda int not null,
     primary key(idropa),
-    FOREIGN KEY (idtipoprenda) REFERENCES TipoPrenda(idTipoPrenda)
+    FOREIGN KEY (idtipoprenda) REFERENCES TipoPrenda(idTipoPrenda),
+    FOREIGN KEY (idMarca) REFERENCES Marca(idMarca)
+    
 );
 select * from ropa;
 
@@ -185,7 +187,7 @@ UPDATE Proveedor set NombreProveedor = 'nose', Telefonoproveedor ='nose',Direcci
 SELECT * from Proveedor ;
 SELECT COUNT(*) from Proveedor p ;
 
-
+DROP table Proveedores;
 //marcas
 
 create table Marca (
@@ -196,6 +198,7 @@ primary key(idMarca)
 );
 insert into Marca(Codigomarca, nombreMarca) values('221','H&M');
 select * from Marca;
+SELECT nombreMarca FROM Marca WHERE 1 ORDER BY nombreMarca ASC ;
 
 //opiniones
 create table Opinion(
@@ -205,3 +208,19 @@ create table Opinion(
 	primary key (idopinion)
 );
 select * from Opinion ;
+
+CREATE table Ventas(
+	idVenta int auto_increment,
+	idRopa int not null,
+	folioVenta VARCHAR(10) unique not null,
+	Fecha date not null,
+	Total double(11,2) not null,
+	Descuento double(11,2) not null,
+	IVA double(11,2) not null,
+	Estado boolean not null,
+	Primary key (idVenta),
+	foreign key (idRopa) references ropa(idRopa)
+);
+INSERT INTO Ventas(idRopa,folioVenta,Fecha,Total,Descuento,IVA,Estado) VALUES('1','nose','2021-01-10','1000.0','2.0','10.0',true);
+SELECT * from Ventas;
+ 
