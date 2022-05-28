@@ -612,11 +612,9 @@ public class CRUDVenta extends javax.swing.JFrame {
         try {
             int fila = tablaVentas.getSelectedRow();
             int id = Integer.parseInt(tablaVentas.getValueAt(fila, 0).toString());
-            PreparedStatement ps, ps2;
-            ResultSet rs, rs2;
-            ResultSetMetaData rsm;
+            PreparedStatement ps;
+            ResultSet rs;
             Connection con = Conexion.getCon();
-            Connection con2 = Conexion.getCon();
             String consultaSQL = "SELECT idVenta, idRopa, folioVenta,Fecha,Total ,Descuento ,IVA ,Estado from Ventas WHERE idVenta =?";
 
             ps = con.prepareStatement(consultaSQL);
