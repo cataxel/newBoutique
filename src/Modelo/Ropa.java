@@ -15,7 +15,15 @@ public class Ropa
     private String genero;
     private String marca;
     private String imagen;
-    private int idtipoprenda;
+    private int idtipoprenda,existencias;
+
+    public int getExistencias() {
+        return existencias;
+    }
+
+    public void setExistencias(int existencias) {
+        this.existencias = existencias;
+    }
 
     public String getImagen() {
         return imagen;

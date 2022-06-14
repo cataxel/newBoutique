@@ -23,8 +23,8 @@ public class SQL_Ropa extends Conexion
     {
         PreparedStatement ps = null;
         Connection con = getConexion();
-        String consultaSQL = "INSERT INTO ropa(nombre, descripcion, precio_costo, precio_venta, ganancia, genero, marca, imagen, idtipoprenda)";
-        consultaSQL += "VALUES(?,?,?,?,?,?,?,?,?) ;";
+        String consultaSQL = "INSERT INTO ropa(nombre, descripcion, precio_costo, precio_venta, ganancia, genero, marca, imagen, idtipoprenda, existencias)";
+        consultaSQL += "VALUES(?,?,?,?,?,?,?,?,?,?) ;";
         try
         {
           ps=con.prepareStatement(consultaSQL);
@@ -37,6 +37,7 @@ public class SQL_Ropa extends Conexion
           ps.setString(7, ropa.getMarca());
           ps.setString(8, ropa.getImagen());
           ps.setInt(9, ropa.getIdtipoprenda());
+          ps.setInt(10, ropa.getExistencias());
           ps.executeUpdate();
           return true;
         }catch(SQLException ex)
@@ -50,7 +51,7 @@ public class SQL_Ropa extends Conexion
     {
         PreparedStatement ps = null;
         Connection con = getConexion();
-        String consultaSQL = "UPDATE ropa SET nombre = ?, descripcion = ?, precio_costo = ?, precio_venta = ?, ganancia = ?, genero = ?, marca = ?,imagen = ?, idtipoprenda = ? WHERE idropa = ?";
+        String consultaSQL = "UPDATE ropa SET nombre = ?, descripcion = ?, precio_costo = ?, precio_venta = ?, ganancia = ?, genero = ?, marca = ?,imagen = ?, idtipoprenda = ?, existencias = ? WHERE idropa = ?";
         try
         {
           ps=con.prepareStatement(consultaSQL);
@@ -63,7 +64,8 @@ public class SQL_Ropa extends Conexion
           ps.setString(7, ropa.getMarca());
           ps.setString(8, ropa.getImagen());
           ps.setInt(9, ropa.getIdtipoprenda());
-          ps.setInt(10, ropa.getIdropa());
+          ps.setInt(10, ropa.getExistencias());
+          ps.setInt(11, ropa.getIdropa());
           ps.executeUpdate();
           return true;
         }catch(SQLException ex)

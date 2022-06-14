@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import DataBase.Conexion;
+import Modelo.Ropa;
 import Modelo.Ventas;
 
 
@@ -27,8 +28,8 @@ public class SQL_Ventas extends Conexion {
     {
         PreparedStatement ps = null;
         Connection con = getConexion();
-        String consultaSQL = "INSERT INTO Ventas(idRopa,folioVenta,Fecha,Total,Descuento,IVA,Estado) "
-                + "VALUES(?,?,?,?,?,?,?);";
+        String consultaSQL = "INSERT INTO Ventas(idRopa,folioVenta,Fecha,Total,Descuento,IVA,Estado,existencias) "
+                + "VALUES(?,?,?,?,?,?,?,?);";
         try
         {
           ps=con.prepareStatement(consultaSQL);
@@ -39,6 +40,7 @@ public class SQL_Ventas extends Conexion {
           ps.setDouble(5, ventas.getDescuento());
           ps.setDouble(6, ventas.getIva());
           ps.setBoolean(7, ventas.isEstado());
+          ps.setInt(8, ventas.getCantidad());
           ps.executeUpdate();
           return true;
         }catch(SQLException ex)
@@ -46,6 +48,47 @@ public class SQL_Ventas extends Conexion {
             Logger.getLogger(SQL_Usuarios.class.getName()).log(Level.SEVERE, null,ex);
             return false;
         }
+    }
+    public boolean Modificar(Ropa ropa)
+    {
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+        String consultaSQL = "UPDATE ropa SET existencias=? WHERE idropa = ?";
+        try
+        {
+          ps=con.prepareStatement(consultaSQL);
+          ps.setInt(1, ropa.getExistencias());
+          ps.setInt(2, ropa.getIdropa());
+          ps.executeUpdate();
+          return true;
+        }catch(SQLException ex)
+        {
+            Logger.getLogger(SQL_Usuarios.class.getName()).log(Level.SEVERE, null,ex);
+            return false;
+        }
+    }
+    public int existencias(int id)
+    {
+        
+        PreparedStatement ps;
+        ResultSet rs;
+        int result = 0;
+        try{
+            ps = con.prepareStatement("select existencias from ropa where idropa = ?;");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while(rs.next()){    
+                result=rs.getInt(1);
+            }
+            ps.close();
+            rs.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }finally{
+            ps=null;
+            rs=null;
+        }
+        return result;
     }
     public int total() {
         int numeroderegistros = 0;

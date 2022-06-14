@@ -135,6 +135,8 @@ public class CRUD_ropa extends javax.swing.JFrame {
         rbmasculino = new javax.swing.JRadioButton();
         rbfemenino = new javax.swing.JRadioButton();
         cbox_marcas = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        existencias = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,14 +145,14 @@ public class CRUD_ropa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Nombre", "Descripcion", "P.Costo", "P.Venta", "Ganancia", "Genero", "Marca", "Clase", "Tipo"
+                "Id", "Nombre", "Descripcion", "P.Costo", "P.Venta", "Ganancia", "Genero", "Marca", "Existencias", "Clase", "Tipo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -260,11 +262,11 @@ public class CRUD_ropa extends javax.swing.JFrame {
         ListadoLayout.setHorizontalGroup(
             ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ListadoLayout.createSequentialGroup()
+                .addComponent(txtVolver)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(ListadoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ListadoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(ListadoLayout.createSequentialGroup()
                         .addGroup(ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -288,11 +290,9 @@ public class CRUD_ropa extends javax.swing.JFrame {
                                 .addComponent(txtbuscar)))
                         .addGap(18, 18, 18)
                         .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 107, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
-            .addGroup(ListadoLayout.createSequentialGroup()
-                .addComponent(txtVolver)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         ListadoLayout.setVerticalGroup(
             ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,7 +305,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
                     .addComponent(cmbfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnbuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -493,6 +493,8 @@ public class CRUD_ropa extends javax.swing.JFrame {
         rbfemenino.setBackground(new java.awt.Color(255, 255, 255));
         rbfemenino.setText("Femenino");
 
+        jLabel2.setText("Existencias");
+
         javax.swing.GroupLayout OperacionesLayout = new javax.swing.GroupLayout(Operaciones);
         Operaciones.setLayout(OperacionesLayout);
         OperacionesLayout.setHorizontalGroup(
@@ -513,7 +515,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
                                 .addComponent(txtprecioventa, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel12)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 67, Short.MAX_VALUE))
                             .addGroup(OperacionesLayout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
@@ -571,8 +573,12 @@ public class CRUD_ropa extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnlimpiartallas)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnvolver)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                                        .addComponent(btnvolver))
+                                    .addGroup(OperacionesLayout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(existencias, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblRopa, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(OperacionesLayout.createSequentialGroup()
                                 .addComponent(btnAgregar1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -646,7 +652,11 @@ public class CRUD_ropa extends javax.swing.JFrame {
                         .addGroup(OperacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
                             .addComponent(cmbtipo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 49, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(OperacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(existencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 18, Short.MAX_VALUE))
                     .addComponent(lblRopa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(OperacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -685,7 +695,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
             ResultSetMetaData rsm;
             Connection con = Conexion.getCon();
             Connection con2 = Conexion.getCon();
-            String consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.genero, r.marca,r.imagen, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.idropa=? ";
+            String consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.genero, r.marca,r.imagen, cp.nombre, tp.nombre, r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.idropa=? ";
             String consulta_talla = "SELECT t.nombre, rt.existencias FROM Tallas t INNER JOIN ropa_talla rt ON t.idtalla = rt.idtalla INNER JOIN ropa r ON rt.idropa = r.idropa WHERE r.idropa=?";
             ps=con.prepareStatement(consultaSQL);
             ps.setInt(1, id);
@@ -727,8 +737,9 @@ public class CRUD_ropa extends javax.swing.JFrame {
                     }
                 }
                 cmbtipo1.setSelectedItem(rs.getString(9));
-                pintarImagen(lblRopa, "/src/Vista/img/"+rs.getString(10));
                 
+                pintarImagen(lblRopa, "/src/Vista/img/"+rs.getString(10));
+                existencias.setText(rs.getString(11));
                 DefaultTableModel modelotabla = (DefaultTableModel) jTable1.getModel();
                 modelotabla.setRowCount(0);
                 ps2 = con2.prepareStatement(consulta_talla);
@@ -778,146 +789,15 @@ public class CRUD_ropa extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Debes ingresar una imagen del producto");
                 } else {
                     mod.setImagen(imagen);
-                    if (txtpreciocosto.getText().equals("") && txtprecioventa.getText().equals("")) {
-                        JOptionPane.showMessageDialog(null, "Debe ingresar valores en los precios");
+                    int existencias = Integer.parseInt(this.existencias.getText());
+                    if (existencias < 0) {
+                        JOptionPane.showMessageDialog(null, "no puede a ver existencias negativas");
                     } else {
-
-                        boolean bandera = false;
-                        try {
-                            double precio_costo = Double.parseDouble(txtpreciocosto.getText());
-                            double precio_venta = Double.parseDouble(txtprecioventa.getText());
-                            if (precio_costo > 0 && precio_venta > 0) {
-                                if (precio_venta > precio_costo) {
-                                    mod.setPrecio_costo(precio_costo);
-                                    mod.setPrecio_venta(precio_venta);
-                                    mod.setGanancia(precio_venta - precio_costo);
-                                    bandera = true;
-                                } else {
-                                    JOptionPane.showMessageDialog(null, "El precio de costo no debe ser mayor al de venta");
-                                }
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Los precios deben ser mayores a cero");
-                            }
-                        } catch (NumberFormatException e) {
-                            JOptionPane.showMessageDialog(null, "Debe ingresar un valor numerico en el precio");
-                        }
-                        if (bandera) {
-                            if (cmbtalla.getSelectedItem().toString().equals("Seleccione una clase")) {
-                                JOptionPane.showMessageDialog(null, "Debe seleccionar una talla");
-                            } else {
-                                String sexo;
-                                if (rbmasculino.isSelected() == true) {
-                                    sexo = "Masculino";
-                                    mod.setGenero(sexo);
-                                } else {
-                                    if (rbfemenino.isSelected() == true) {
-                                        sexo = "Femenino";
-                                        mod.setGenero(sexo);
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "Debe seleccionar un genero");
-                                    }
-                                }
-                                try {
-                                    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                                    if (model.getRowCount() > 0) {
-                                        /*
-                                     for (int i = 0; i<model.getRowCount(); i++) {
-                                        final String col1 = (String) model.getValueAt(i, 0);
-                                        final String col2 = (String) model.getValueAt(i, 1);
-                                        System.out.println("Talla: " + col1 + " Existencia: " + col2);
-                                    }
-                                         */
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "Debe Agregar las tallas");
-                                    }
-                                } catch (NumberFormatException e) {
-                                    JOptionPane.showMessageDialog(null, "Debe ingresar un valor numerico en las existencias");
-                                }
-                                String marca = cbox_marcas.getSelectedItem().toString();
-                                if (marca.equals("Seleccione una opcion")) {
-                                    JOptionPane.showMessageDialog(null, "Debes de seleccionar una marca");
-                                } else {
-                                    mod.setMarca(marca);
-                                    int clase = -1;
-                                    if (rbsuperior.isSelected() == true) {
-                                        clase = 1;
-                                    } else {
-                                        if (rbinferior.isSelected() == true) {
-                                            clase = 2;
-                                        } else {
-                                            if (rbcalzado.isSelected() == true) {
-                                                clase = 3;
-                                            }
-                                        }
-                                    }
-                                    if (!cmbtipo1.getSelectedItem().toString().equals("Seleccione una clase de prenda primero")) {
-                                        mod.setIdtipoprenda(traerIDTipoPrenda(cmbtipo1.getSelectedItem().toString(), clase));
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de ropa");
-                                    }
-                                    if (modSql.Agregar(mod)) {
-                                        //consulta para traer el ultimo id deROPA REGISTRADO
-                                        //SELECT MAX(idropa) AS 'idropa' FROM ropa
-                                        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                                        if (model.getRowCount() > 0) {
-                                            SQL_Ropa_Tallas sqlropatallas = new SQL_Ropa_Tallas();
-                                            for (int i = 0; i < model.getRowCount(); i++) {
-
-                                                Ropa_Tallas rt = new Ropa_Tallas();
-                                                rt.setIdropa(traerUltimoIDRopa());
-                                                rt.setIdtalla(traerIDTalla(model.getValueAt(i, 0).toString(), clase));
-                                                rt.setExistencias(Integer.parseInt(model.getValueAt(i, 1).toString()));
-                                                sqlropatallas.Agregar(rt);
-                                            }
-                                        }
-                                        //una vez que guardo la ropa guardara las tallas
-
-                                        JOptionPane.showMessageDialog(this, "Registro guardado", "Registro", JOptionPane.INFORMATION_MESSAGE);
-                                        TabRopa.setSelectedIndex(0);
-                                        Limpiar();
-                                        CargarTabla();
-                                    } else {
-                                        JOptionPane.showMessageDialog(this, "Error al guardar el registro", "Registro", JOptionPane.ERROR_MESSAGE);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }//GEN-LAST:event_btnAgregar1ActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        int id = 0;
-        boolean ban = false;
-        try {
-            id = Integer.parseInt(txtID.getText());
-            ban = true;
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Seleccione un elemento de la tabla para obtener un id");
-        }
-        SQL_Ropa modSql = new SQL_Ropa();
-        Ropa mod = new Ropa();
-        String nombre = txtNombre.getText();
-        if (ban) {
-            if (nombre.equals("")) {
-                JOptionPane.showMessageDialog(null, "Debes de ingresar un nombre a la prenda");
-            } else {
-                mod.setNombre(nombre);
-                String descripcion = txtDescripcion.getText();
-                if (descripcion.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Debes de ingresar una descripcion a la prenda");
-                } else {
-                    mod.setDescripcion(descripcion);
-                    String imagen = imagenRopa;
-                    if (imagen.equals("imagenDefault.jpg")) {
-                        JOptionPane.showMessageDialog(null, "Debes ingresar una imagen del producto");
-                    } else {
-                        mod.setImagen(imagen);
+                        mod.setExistencias(existencias);
                         if (txtpreciocosto.getText().equals("") && txtprecioventa.getText().equals("")) {
                             JOptionPane.showMessageDialog(null, "Debe ingresar valores en los precios");
                         } else {
+
                             boolean bandera = false;
                             try {
                                 double precio_costo = Double.parseDouble(txtpreciocosto.getText());
@@ -957,11 +837,11 @@ public class CRUD_ropa extends javax.swing.JFrame {
                                         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                                         if (model.getRowCount() > 0) {
                                             /*
-                                        for (int i = 0; i<model.getRowCount(); i++) {
-                                            final String col1 = (String) model.getValueAt(i, 0);
-                                            final String col2 = (String) model.getValueAt(i, 1);
-                                            System.out.println("Talla: " + col1 + " Existencia: " + col2);
-                                        }
+                                     for (int i = 0; i<model.getRowCount(); i++) {
+                                        final String col1 = (String) model.getValueAt(i, 0);
+                                        final String col2 = (String) model.getValueAt(i, 1);
+                                        System.out.println("Talla: " + col1 + " Existencia: " + col2);
+                                    }
                                              */
                                         } else {
                                             JOptionPane.showMessageDialog(null, "Debe Agregar las tallas");
@@ -970,8 +850,8 @@ public class CRUD_ropa extends javax.swing.JFrame {
                                         JOptionPane.showMessageDialog(null, "Debe ingresar un valor numerico en las existencias");
                                     }
                                     String marca = cbox_marcas.getSelectedItem().toString();
-                                    if (marca.equals("")) {
-                                        JOptionPane.showMessageDialog(null, "Debes de ingresar una marca");
+                                    if (marca.equals("Seleccione una opcion")) {
+                                        JOptionPane.showMessageDialog(null, "Debes de seleccionar una marca");
                                     } else {
                                         mod.setMarca(marca);
                                         int clase = -1;
@@ -991,18 +871,16 @@ public class CRUD_ropa extends javax.swing.JFrame {
                                         } else {
                                             JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de ropa");
                                         }
-                                        mod.setIdropa(id);
-                                        if (modSql.Modificar(mod)) {
+                                        if (modSql.Agregar(mod)) {
                                             //consulta para traer el ultimo id deROPA REGISTRADO
                                             //SELECT MAX(idropa) AS 'idropa' FROM ropa
                                             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                                             if (model.getRowCount() > 0) {
-                                                Ropa_Tallas rt = new Ropa_Tallas();
                                                 SQL_Ropa_Tallas sqlropatallas = new SQL_Ropa_Tallas();
-                                                sqlropatallas.Eliminar(id);
                                                 for (int i = 0; i < model.getRowCount(); i++) {
 
-                                                    rt.setIdropa(id);
+                                                    Ropa_Tallas rt = new Ropa_Tallas();
+                                                    rt.setIdropa(traerUltimoIDRopa());
                                                     rt.setIdtalla(traerIDTalla(model.getValueAt(i, 0).toString(), clase));
                                                     rt.setExistencias(Integer.parseInt(model.getValueAt(i, 1).toString()));
                                                     sqlropatallas.Agregar(rt);
@@ -1021,6 +899,153 @@ public class CRUD_ropa extends javax.swing.JFrame {
                                 }
                             }
                         }
+                    }
+
+                }
+            }
+        }
+    }//GEN-LAST:event_btnAgregar1ActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        int id = 0;
+        boolean ban = false;
+        try {
+            id = Integer.parseInt(txtID.getText());
+            ban = true;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Seleccione un elemento de la tabla para obtener un id");
+        }
+        SQL_Ropa modSql = new SQL_Ropa();
+        Ropa mod = new Ropa();
+        String nombre = txtNombre.getText();
+        if (ban) {
+            if (nombre.equals("")) {
+                JOptionPane.showMessageDialog(null, "Debes de ingresar un nombre a la prenda");
+            } else {
+                mod.setNombre(nombre);
+                String descripcion = txtDescripcion.getText();
+                if (descripcion.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Debes de ingresar una descripcion a la prenda");
+                } else {
+                    mod.setDescripcion(descripcion);
+                    String imagen = imagenRopa;
+                    if (imagen.equals("imagenDefault.jpg")) {
+                        JOptionPane.showMessageDialog(null, "Debes ingresar una imagen del producto");
+                    } else {
+                        mod.setImagen(imagen);
+                        int existencias = Integer.parseInt(this.existencias.getText());
+                        if (existencias < 0) {
+                            JOptionPane.showMessageDialog(null, "las existencias deben ser mayor a 0");
+                        } else {
+                            mod.setExistencias(existencias);
+                            if (txtpreciocosto.getText().equals("") && txtprecioventa.getText().equals("")) {
+                                JOptionPane.showMessageDialog(null, "Debe ingresar valores en los precios");
+                            } else {
+                                boolean bandera = false;
+                                try {
+                                    double precio_costo = Double.parseDouble(txtpreciocosto.getText());
+                                    double precio_venta = Double.parseDouble(txtprecioventa.getText());
+                                    if (precio_costo > 0 && precio_venta > 0) {
+                                        if (precio_venta > precio_costo) {
+                                            mod.setPrecio_costo(precio_costo);
+                                            mod.setPrecio_venta(precio_venta);
+                                            mod.setGanancia(precio_venta - precio_costo);
+                                            bandera = true;
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "El precio de costo no debe ser mayor al de venta");
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Los precios deben ser mayores a cero");
+                                    }
+                                } catch (NumberFormatException e) {
+                                    JOptionPane.showMessageDialog(null, "Debe ingresar un valor numerico en el precio");
+                                }
+                                if (bandera) {
+                                    if (cmbtalla.getSelectedItem().toString().equals("Seleccione una clase")) {
+                                        JOptionPane.showMessageDialog(null, "Debe seleccionar una talla");
+                                    } else {
+                                        String sexo;
+                                        if (rbmasculino.isSelected() == true) {
+                                            sexo = "Masculino";
+                                            mod.setGenero(sexo);
+                                        } else {
+                                            if (rbfemenino.isSelected() == true) {
+                                                sexo = "Femenino";
+                                                mod.setGenero(sexo);
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "Debe seleccionar un genero");
+                                            }
+                                        }
+                                        try {
+                                            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                                            if (model.getRowCount() > 0) {
+                                                /*
+                                        for (int i = 0; i<model.getRowCount(); i++) {
+                                            final String col1 = (String) model.getValueAt(i, 0);
+                                            final String col2 = (String) model.getValueAt(i, 1);
+                                            System.out.println("Talla: " + col1 + " Existencia: " + col2);
+                                        }
+                                                 */
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "Debe Agregar las tallas");
+                                            }
+                                        } catch (NumberFormatException e) {
+                                            JOptionPane.showMessageDialog(null, "Debe ingresar un valor numerico en las existencias");
+                                        }
+                                        String marca = cbox_marcas.getSelectedItem().toString();
+                                        if (marca.equals("")) {
+                                            JOptionPane.showMessageDialog(null, "Debes de ingresar una marca");
+                                        } else {
+                                            mod.setMarca(marca);
+                                            int clase = -1;
+                                            if (rbsuperior.isSelected() == true) {
+                                                clase = 1;
+                                            } else {
+                                                if (rbinferior.isSelected() == true) {
+                                                    clase = 2;
+                                                } else {
+                                                    if (rbcalzado.isSelected() == true) {
+                                                        clase = 3;
+                                                    }
+                                                }
+                                            }
+                                            if (!cmbtipo1.getSelectedItem().toString().equals("Seleccione una clase de prenda primero")) {
+                                                mod.setIdtipoprenda(traerIDTipoPrenda(cmbtipo1.getSelectedItem().toString(), clase));
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de ropa");
+                                            }
+                                            mod.setIdropa(id);
+                                            if (modSql.Modificar(mod)) {
+                                                //consulta para traer el ultimo id deROPA REGISTRADO
+                                                //SELECT MAX(idropa) AS 'idropa' FROM ropa
+                                                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                                                if (model.getRowCount() > 0) {
+                                                    Ropa_Tallas rt = new Ropa_Tallas();
+                                                    SQL_Ropa_Tallas sqlropatallas = new SQL_Ropa_Tallas();
+                                                    sqlropatallas.Eliminar(id);
+                                                    for (int i = 0; i < model.getRowCount(); i++) {
+
+                                                        rt.setIdropa(id);
+                                                        rt.setIdtalla(traerIDTalla(model.getValueAt(i, 0).toString(), clase));
+                                                        rt.setExistencias(Integer.parseInt(model.getValueAt(i, 1).toString()));
+                                                        sqlropatallas.Agregar(rt);
+                                                    }
+                                                }
+                                                //una vez que guardo la ropa guardara las tallas
+
+                                                JOptionPane.showMessageDialog(this, "Registro guardado", "Registro", JOptionPane.INFORMATION_MESSAGE);
+                                                TabRopa.setSelectedIndex(0);
+                                                Limpiar();
+                                                CargarTabla();
+                                            } else {
+                                                JOptionPane.showMessageDialog(this, "Error al guardar el registro", "Registro", JOptionPane.ERROR_MESSAGE);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
                     }
                 }
             }
@@ -1150,7 +1175,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
         else
         {
             int columnas;
-            int[] anchos = {30,100,150,40,30,60,40,70,80,124};
+            int[] anchos = {30,100,150,40,30,60,40,70,80,124,50};
             for(int i = 0; i<tablaropa.getColumnCount(); i++)
             {
                 tablaropa.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
@@ -1162,35 +1187,35 @@ public class CRUD_ropa extends javax.swing.JFrame {
                 String filtro = cmbfiltro.getSelectedItem().toString();
                 if(filtro.equals("Id"))
                 {
-                    consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.idropa = '"+busqueda+"' ";
+                    consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre,r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.idropa = '"+busqueda+"' ";
                 }else
                 {
                     if(filtro.equals("Nombre"))
                     {
-                        consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.nombre like '%"+busqueda+"%' ";
+                        consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre,r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.nombre like '%"+busqueda+"%' ";
                     }else
                     {
                         if(filtro.equals("Genero"))
                         {
-                            consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.genero like '%"+busqueda+"%' ";
+                            consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre,r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.genero like '%"+busqueda+"%' ";
                         }
                         else
                         {
                             if(filtro.equals("Marca"))
                             {
-                                consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.marca like '%"+busqueda+"%' ";
+                                consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre,r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.marca like '%"+busqueda+"%' ";
                             }
                             else
                             {
                                 if(filtro.equals("Clase"))
                                 {
-                                    consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE cp.nombre like '%"+busqueda+"%' ";
+                                    consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre,r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE cp.nombre like '%"+busqueda+"%' ";
                                 }
                                 else
                                 {
                                     if(filtro.equals("Tipo"))
                                     {
-                                        consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE tp.nombre like '%"+busqueda+"%' ";
+                                        consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre, r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE tp.nombre like '%"+busqueda+"%' ";
                                     }
                                 }
                             }
@@ -1244,35 +1269,35 @@ public class CRUD_ropa extends javax.swing.JFrame {
             String filtro = cmbfiltro.getSelectedItem().toString();
             if(filtro.equals("Id"))
             {
-                consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.idropa = '"+busqueda+"' ";
+                consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre, r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.idropa = '"+busqueda+"' ";
             }else
             {
                 if(filtro.equals("Nombre"))
                 {
-                    consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.nombre like '%"+busqueda+"%' ";
+                    consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre, r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.nombre like '%"+busqueda+"%' ";
                 }else
                 {
                     if(filtro.equals("Genero"))
                     {
-                        consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.genero like '%"+busqueda+"%' ";
+                        consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre, r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.genero like '%"+busqueda+"%' ";
                     }
                     else
                     {
                         if(filtro.equals("Marca"))
                         {
-                            consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda  WHERE r.marca like '%"+busqueda+"%' ";
+                            consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre, r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda  WHERE r.marca like '%"+busqueda+"%' ";
                         }
                         else
                         {
                             if(filtro.equals("Clase"))
                             {
-                                consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE cp.nombre like '%"+busqueda+"%' ";
+                                consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre, r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE cp.nombre like '%"+busqueda+"%' ";
                             }
                             else
                             {
                                 if(filtro.equals("Tipo"))
                                 {
-                                    consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE tp.nombre like '%"+busqueda+"%' ";
+                                    consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre, r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE tp.nombre like '%"+busqueda+"%' ";
                                 }
                             }
                         }
@@ -1480,7 +1505,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
         java.sql.ResultSetMetaData rsmd;
         int columnas;
         //724 tamano tabla de forma horizontal
-        int[] anchos = {40,100,150,50,50,50,60,70,80,110};
+        int[] anchos = {40,100,150,50,50,50,60,70,80,110,50};
         for(int i = 0; i<tablaropa.getColumnCount(); i++)
         {
             tablaropa.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
@@ -1489,7 +1514,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
         {
             Connection con = Conexion.getCon();
             //String consultaSQL = "SELECT idropa, nombre, descripcion, precio, genero, marca FROM ropa";
-            String consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda ";
+            String consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.ganancia, r.genero, r.marca, r.existencias, cp.nombre, tp.nombre FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda ";
             ps = con.prepareStatement(consultaSQL);
             rs = ps.executeQuery();
             rsmd = rs.getMetaData();
@@ -1505,8 +1530,10 @@ public class CRUD_ropa extends javax.swing.JFrame {
                 fila[5] = rs.getDouble(6);
                 fila[6] = rs.getString(7);
                 fila[7] = rs.getString(8);
-                fila[8] = rs.getString(9);
+                fila[8] = rs.getInt(9);
                 fila[9] = rs.getString(10);
+                fila[10] = rs.getString(11);
+                
                 modelotabla.addRow(fila);
             }
             Registros.setText("Mostrados " + modSql.total() );
@@ -1536,6 +1563,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
         txtexistencias.setText("");
         txtprecioventa.setText("");
         lblRopa.setText("");
+        existencias.setText("0");
         LimpiarTablaTallas();
     }
     private void LimpiarTablaTallas()
@@ -1662,6 +1690,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbfiltro;
     private javax.swing.JComboBox<String> cmbtalla;
     private javax.swing.JComboBox<String> cmbtipo1;
+    private javax.swing.JTextField existencias;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
@@ -1673,6 +1702,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
