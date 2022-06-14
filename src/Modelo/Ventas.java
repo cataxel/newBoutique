@@ -9,11 +9,19 @@ package Modelo;
  * @author axel
  */
 public class Ventas {
-    int idVenta,idRopa;
+    int idVenta,idRopa,cantidad;
     double total, Descuento, Iva;
     boolean Estado;
     String folioVenta,fecha;
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+    
     public int getIdVenta() {
         return idVenta;
     }
