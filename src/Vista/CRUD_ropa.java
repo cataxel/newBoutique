@@ -19,6 +19,12 @@ import java.util.logging.Logger;
 import Controlador.*;
 import Modelo.*;
 import java.awt.Image;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -870,6 +876,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
                                         if (modSql.Agregar(mod)) {
                                             //consulta para traer el ultimo id deROPA REGISTRADO
                                             //SELECT MAX(idropa) AS 'idropa' FROM ropa
+                                            imagen();
                                             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                                             if (model.getRowCount() > 0) {
                                                 SQL_Ropa_Tallas sqlropatallas = new SQL_Ropa_Tallas();
@@ -1361,6 +1368,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
             ruta = jf.getSelectedFile().getPath();
             // obtener el nombre del archivo seleccionado
             imagenRopa = jf.getSelectedFile().getName();
+            
             // pintar la imagen que selecciono el usuario
             pintarImagen(lblRopa,ruta);
         }
@@ -1463,7 +1471,32 @@ public class CRUD_ropa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.toString());
         }
     }
-    
+    private void imagen(){
+        String ruta;
+        //crear un obj que permita seleccionar un archvio
+        JFileChooser jf = new JFileChooser();
+        //establecer un filtro para seleccion de imagenes
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Gif,JPG,PNG", "gif","jpg","png");
+        // establecer el filtro al objeto jf
+        jf.setFileFilter(filtro);
+        // abrir el cuadro de dialogo
+        int resp = jf.showOpenDialog(this);
+        // validar la respuesta
+        if(resp == JFileChooser.APPROVE_OPTION){
+            // obtener la ruta del archivo seleccionado
+            ruta = jf.getSelectedFile().getPath();
+            // obtener el nombre del archivo seleccionado
+            imagenRopa = jf.getSelectedFile().getName();
+            
+            //copiar archivo y pegarlo
+            String destino = "src/Vista/img/";
+            try {
+                copiarpegarimagen(ruta, destino,imagenRopa);
+            } catch (IOException ex) {
+                Logger.getLogger(CRUD_ropa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     private void MostrarOcultarComponentes(boolean accion){
         jLabel5.setVisible(accion);
         rbmasculino.setVisible(accion);
@@ -1490,6 +1523,20 @@ public class CRUD_ropa extends javax.swing.JFrame {
         btnvolver.setVisible(!accion);
         //jLabel11.setVisible(!accion);
         btnlimpiartallas.setVisible(!accion);
+    }
+    private void copiarpegarimagen(String src, String dst,String nombre) throws IOException{
+        try{
+            InputStream in = new FileInputStream(src);
+            OutputStream out = new FileOutputStream(dst+nombre);
+            
+            byte[] b = new byte[1024];
+            int i;
+            while((i = in.read(b))>0){
+                out.write(b,0,i);
+            }
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
     }
      private void CargarTabla()
     {
