@@ -4,7 +4,7 @@
  */
 package Vista;
 
-import Controlador.SQL_Usuario;
+
 import Controlador.registrarmarca;
 import DataBase.Conexion;
 import Modelo.Marca;
@@ -115,6 +115,7 @@ public class CRUDMarca extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -237,6 +238,14 @@ public class CRUDMarca extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, -1, -1));
         jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 120, 20));
 
+        jButton1.setText("Restablecer tabla");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -279,6 +288,7 @@ public class CRUDMarca extends javax.swing.JFrame {
                 if (modsql.Insertar(mod)) {
                     JOptionPane.showMessageDialog(this, "Cuenta creada con exito", "Registro", JOptionPane.INFORMATION_MESSAGE);
                     limpiar();
+                    CargarTabla();
                 } else {
                     JOptionPane.showMessageDialog(this, "Error al guardar la marca", "Registro", JOptionPane.ERROR_MESSAGE);
                 }
@@ -319,6 +329,7 @@ public class CRUDMarca extends javax.swing.JFrame {
                     if (modSql.Modificar(mod)) {
                         JOptionPane.showMessageDialog(this, "Cuenta actualizado con exito", "Registro", JOptionPane.INFORMATION_MESSAGE);
                         limpiar();
+                        CargarTabla();
                     } else {
                         JOptionPane.showMessageDialog(this, "Error al guardar la cuenta", "Registro", JOptionPane.ERROR_MESSAGE);
                     }
@@ -412,6 +423,10 @@ public class CRUDMarca extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtBuscarMouseReleased
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CargarTabla();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {
         int id = 0;
         try {
@@ -483,6 +498,7 @@ public class CRUDMarca extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JLabel id;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
