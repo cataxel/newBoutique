@@ -19,7 +19,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public static CRUD_ropa frmCRopa;
     public static CRUD_Usuarios frmCusers;
     public static CRUDCompras frmCompras;
-    public static CRUD_Proveedores1 frmprovee;
+    public static ParaProveedores frmprovee;
     public static CRUDMarca frmmarca;
     public static CRUDVenta frmventa;
     public static Reportes reportes;
@@ -502,7 +502,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
         if(frmprovee == null)
         {
-           frmprovee = new CRUD_Proveedores1();
+           frmprovee = new ParaProveedores();
            frmprovee.setVisible(true);
            dispose();
         }

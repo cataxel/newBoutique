@@ -9,9 +9,26 @@ package Modelo;
  * @author DELL
  */
 public class Compras {
-    private int IdCompra, IdProveedor;
+    private int IdCompra, IdProveedor,idropa,cantidad;
     private String FechaCompra, MontoCompra, DescripcionCompra;
 
+    public int getIdropa() {
+        return idropa;
+    }
+
+    public void setIdropa(int idropa) {
+        this.idropa = idropa;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    
     public int getIdCompra() {
         return IdCompra;
     }

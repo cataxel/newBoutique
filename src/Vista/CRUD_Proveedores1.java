@@ -6,21 +6,10 @@ package Vista;
 
 import DataBase.Conexion;
 import Modelo.Usuario;
-import java.awt.Image;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableRowSorter;
 import Negocio.CategoriaControl;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -34,13 +23,11 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
     public final CategoriaControl control;
     String accion;
     private Usuario user;
-    private String ImagenProveedor;
     private String NombreOpAnt;
     public CRUD_Proveedores1() {
         initComponents();
         control = new CategoriaControl();
         accion = "guardar";
-        ImagenProveedor = "imagenDefault.jpg";
         txtIdProveedor.setVisible(false);
         listar("");
         
@@ -73,22 +60,7 @@ public class CRUD_Proveedores1 extends javax.swing.JInternalFrame {
          txtTelefonoProv.setText("");
          txtDireccionProv.setText("");
          txtNombreEmpresaProveedor.setText("");
-         //lblProveedor.setIcon(null);
      }
-     /*public void pintarImagen(JLabel lbl, String ruta){
-         ImageIcon imagen = new ImageIcon(ruta);
-         Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(lbl.getWidth(), lbl.getHeight(), Image.SCALE_SMOOTH));
-         lbl.setIcon(icono);
-         repaint();   
-     }*/
-//     private int regresarIndice(String valor){
-//         for(int j = 0;j< cmdDescuento.getItemCount(); j++)
-//         {
-//             if(valor.equals(cmdDescuento.getItemAt(j)))
-//                 return j;
-//         }
-//         return 0;
-//     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -7,6 +7,7 @@ package Vista;
 import Controlador.SQL_Compra;
 import Modelo.Compras;
 import DataBase.Conexion;
+import Modelo.Ropa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,7 +40,7 @@ public class CRUDCompras extends javax.swing.JFrame {
         java.sql.ResultSetMetaData rsmd;
         int columnas;
         //724 tamano tabla de forma horizontal
-        int[] anchos = {40,100,150,50,50,50,60,70,80,110};
+        int[] anchos = {40,40,40,50,50,50,150,70,80,110};
         for(int i = 0; i<tablaCompras.getColumnCount(); i++)
         {
             tablaCompras.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
@@ -48,7 +49,7 @@ public class CRUDCompras extends javax.swing.JFrame {
         {
             Connection con = Conexion.getCon();
             //String consultaSQL = "SELECT idropa, nombre, descripcion, precio, genero, marca FROM ropa";
-            String consultaSQL = "select IdCompra, IdProveedor, FechaCompra, MontoCompra, DescripcionCompra from Compra;";
+            String consultaSQL = "select IdCompra, IdProveedor, idropa, FechaCompra, MontoCompra, cantidad, DescripcionCompra from Compra;";
             ps = con.prepareStatement(consultaSQL);
             rs = ps.executeQuery();
             rsmd = rs.getMetaData();
@@ -58,9 +59,11 @@ public class CRUDCompras extends javax.swing.JFrame {
             {
                 fila[0] = rs.getInt(1);
                 fila[1] = rs.getInt(2);
-                fila[2] = rs.getString(3);
+                fila[2] = rs.getInt(3);
                 fila[3] = rs.getString(4);
                 fila[4] = rs.getString(5);
+                fila[5] = rs.getInt(6);
+                fila[6] = rs.getString(7);
                 modelotabla.addRow(fila);
             }
             Registros.setText("Mostrados " + modSql.total() );
@@ -77,6 +80,8 @@ public class CRUDCompras extends javax.swing.JFrame {
         txtDescripcionCompra.setText("");
         txtFechaCompra.setText("");
         txtMontoCompra.setText("");
+        txtidropa.setText("");
+        txtcantidad.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,8 +99,6 @@ public class CRUDCompras extends javax.swing.JFrame {
         cmbfiltro = new javax.swing.JComboBox<>();
         txtBuscar = new javax.swing.JTextField();
         btnNuevo = new javax.swing.JButton();
-        btnActivar = new javax.swing.JButton();
-        btnDesactivar = new javax.swing.JButton();
         btnRestablecerTabla = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         Registros = new javax.swing.JLabel();
@@ -114,7 +117,12 @@ public class CRUDCompras extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         txtIdProveedor = new javax.swing.JTextField();
-        btnRopa = new javax.swing.JButton();
+        btnproveedores = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtcantidad = new javax.swing.JTextField();
+        txtidropa = new javax.swing.JTextField();
+        btnropa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,16 +153,6 @@ public class CRUDCompras extends javax.swing.JFrame {
                 btnNuevoActionPerformed(evt);
             }
         });
-
-        btnActivar.setBackground(new java.awt.Color(0, 153, 153));
-        btnActivar.setFont(new java.awt.Font("SimSun", 1, 12)); // NOI18N
-        btnActivar.setForeground(new java.awt.Color(255, 255, 255));
-        btnActivar.setText("Activar");
-
-        btnDesactivar.setBackground(new java.awt.Color(0, 153, 153));
-        btnDesactivar.setFont(new java.awt.Font("SimSun", 1, 12)); // NOI18N
-        btnDesactivar.setForeground(new java.awt.Color(255, 255, 255));
-        btnDesactivar.setText("Desactivar");
 
         btnRestablecerTabla.setBackground(new java.awt.Color(0, 153, 153));
         btnRestablecerTabla.setFont(new java.awt.Font("SimSun", 1, 12)); // NOI18N
@@ -187,14 +185,14 @@ public class CRUDCompras extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IdCompra", "IdProveedor", "FechaCompra", "MontoCompra", "DescripcionCompra"
+                "IdCompra", "IdProveedor", "idRopa", "FechaCompra", "MontoCompra", "Cantidad", "DescripcionCompra"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -229,15 +227,11 @@ public class CRUDCompras extends javax.swing.JFrame {
                     .addGroup(ListadoPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(ListadoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
                             .addGroup(ListadoPanelLayout.createSequentialGroup()
                                 .addComponent(btnNuevo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnRestablecerTabla)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDesactivar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnActivar)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(ListadoPanelLayout.createSequentialGroup()
@@ -259,14 +253,12 @@ public class CRUDCompras extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(ListadoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo)
-                    .addComponent(btnRestablecerTabla)
-                    .addComponent(btnDesactivar)
-                    .addComponent(btnActivar))
+                    .addComponent(btnRestablecerTabla))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Registros)
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         paneles.addTab("Listado", ListadoPanel);
@@ -320,12 +312,29 @@ public class CRUDCompras extends javax.swing.JFrame {
             }
         });
 
-        btnRopa.setFont(new java.awt.Font("SimSun", 1, 14)); // NOI18N
-        btnRopa.setForeground(new java.awt.Color(0, 102, 102));
-        btnRopa.setText("...");
-        btnRopa.addActionListener(new java.awt.event.ActionListener() {
+        btnproveedores.setFont(new java.awt.Font("SimSun", 1, 14)); // NOI18N
+        btnproveedores.setForeground(new java.awt.Color(0, 102, 102));
+        btnproveedores.setText("...");
+        btnproveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRopaActionPerformed(evt);
+                btnproveedoresActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("SimSun", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel10.setText("Cantidad");
+
+        jLabel11.setFont(new java.awt.Font("SimSun", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel11.setText("ID-Ropa");
+
+        btnropa.setFont(new java.awt.Font("SimSun", 1, 14)); // NOI18N
+        btnropa.setForeground(new java.awt.Color(0, 102, 102));
+        btnropa.setText("...");
+        btnropa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnropaActionPerformed(evt);
             }
         });
 
@@ -337,7 +346,28 @@ public class CRUDCompras extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(OperacionesPanelLayout.createSequentialGroup()
-                        .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgregar)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OperacionesPanelLayout.createSequentialGroup()
+                        .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(OperacionesPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtDescripcionCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(OperacionesPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtMontoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtFechaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(115, 115, 115))
+                    .addGroup(OperacionesPanelLayout.createSequentialGroup()
+                        .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(OperacionesPanelLayout.createSequentialGroup()
                                 .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,52 +376,50 @@ public class CRUDCompras extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41)
-                                .addComponent(btnRopa))
+                                .addComponent(btnproveedores)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtidropa, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnropa))
                             .addGroup(OperacionesPanelLayout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(txtDescripcionCompra)
-                                .addGap(99, 99, 99)))
-                        .addContainerGap(16, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OperacionesPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtMontoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtFechaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(115, 115, 115))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OperacionesPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(btnAgregar)
-                .addContainerGap())
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(71, Short.MAX_VALUE))))
         );
         OperacionesPanelLayout.setVerticalGroup(
             OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OperacionesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(id)
-                    .addComponent(idropa)
-                    .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRopa))
-                .addGap(18, 18, 18)
-                .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtMontoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtFechaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(OperacionesPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(id)
+                            .addComponent(idropa)
+                            .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnproveedores)
+                            .addComponent(jLabel11)
+                            .addComponent(txtidropa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnropa))
+                        .addGap(18, 18, 18)
+                        .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtMontoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(txtFechaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel9)
+                        .addGap(64, 64, 64))
+                    .addComponent(txtDescripcionCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtDescripcionCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addGroup(OperacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(jButton3))
@@ -444,16 +472,16 @@ public class CRUDCompras extends javax.swing.JFrame {
                 String consultaSQL = "";
                 String filtro = cmbfiltro.getSelectedItem().toString();
                 if (filtro.equals("IdCompra")) {
-                    consultaSQL = "SELECT IdCompra, IdProveedor, FechaCompra,MontoCompra ,DescripcionCompra from Compra WHERE IdCompra ='" + busqueda + "' ";
+                    consultaSQL = "SELECT IdCompra, IdProveedor,idropa, FechaCompra,MontoCompra,cantidad ,DescripcionCompra from Compra WHERE IdCompra ='" + busqueda + "' ";
                 } else {
                     if (filtro.equals("IdProveedor")) {
-                        consultaSQL = "SELECT IdCompra, IdProveedor, FechaCompra,MontoCompra ,DescripcionCompra from Compra WHERE IdProveedor ='" + busqueda + "' ";
+                        consultaSQL = "SELECT IdCompra, IdProveedor,idropa, FechaCompra,MontoCompra,cantidad ,DescripcionCompra from Compra WHERE IdProveedor ='" + busqueda + "' ";
                     } else {
                         if (filtro.equals("FechaCompra")) {
-                            consultaSQL = "SELECT IdCompra, IdProveedor, FechaCompra,MontoCompra ,DescripcionCompra from Compra WHERE fechaCompra ='" + busqueda + "' ";
+                            consultaSQL = "SELECT IdCompra, IdProveedor,idropa, FechaCompra,MontoCompra,cantidad ,DescripcionCompra from Compra WHERE fechaCompra ='" + busqueda + "' ";
                         } else {
                             if (filtro.equals("MontoCompra")) {
-                                consultaSQL = "SELECT IdCompra, IdProveedor, FechaCompra,MontoCompra ,DescripcionCompra from Compra WHERE MontoCompra ='" + busqueda + "' ";
+                                consultaSQL = "SELECT IdCompra, IdProveedor,idropa, FechaCompra,MontoCompra,cantidad ,DescripcionCompra from Compra WHERE MontoCompra ='" + busqueda + "' ";
                             }
                         }
                     }
@@ -495,16 +523,16 @@ public class CRUDCompras extends javax.swing.JFrame {
                 String consultaSQL = "";
                 String filtro = cmbfiltro.getSelectedItem().toString();
                 if (filtro.equals("IdCompra")) {
-                    consultaSQL = "SELECT IdCompra, IdProveedor, FechaCompra,MontoCompra ,DescripcionCompra from Compra WHERE IdCompra ='" + busqueda + "' ";
+                    consultaSQL = "SELECT IdCompra, IdProveedor,idropa, FechaCompra,MontoCompra,cantidad ,DescripcionCompra from Compra WHERE IdCompra ='" + busqueda + "' ";
                 } else {
                     if (filtro.equals("IdProveedor")) {
-                        consultaSQL = "SELECT IdCompra, IdProveedor, FechaCompra,MontoCompra ,DescripcionCompra from Compra WHERE IdProveedor ='" + busqueda + "' ";
+                        consultaSQL = "SELECT IdCompra, IdProveedor,idropa, FechaCompra,MontoCompra,cantidad ,DescripcionCompra from Compra WHERE IdProveedor ='" + busqueda + "' ";
                     } else {
                         if (filtro.equals("FechaCompra")) {
-                            consultaSQL = "SELECT IdCompra, IdProveedor, FechaCompra,MontoCompra ,DescripcionCompra from Compra WHERE fechaCompra ='" + busqueda + "' ";
+                            consultaSQL = "SELECT IdCompra, IdProveedor,idropa, FechaCompra,MontoCompra,cantidad ,DescripcionCompra from Compra WHERE fechaCompra ='" + busqueda + "' ";
                         } else {
                             if (filtro.equals("MontoCompra")) {
-                                consultaSQL = "SELECT IdCompra, IdProveedor, FechaCompra,MontoCompra ,DescripcionCompra from Compra WHERE MontoCompra ='" + busqueda + "' ";
+                                consultaSQL = "SELECT IdCompra, IdProveedor,idropa, FechaCompra,MontoCompra,cantidad ,DescripcionCompra from Compra WHERE MontoCompra ='" + busqueda + "' ";
                             }
                         }
                     }
@@ -529,36 +557,55 @@ public class CRUDCompras extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         SQL_Compra modsql = new SQL_Compra();
         Compras mod = new Compras();
+        Ropa mod2 = new Ropa();
         int idProveedor = Integer.parseInt(txtIdProveedor.getText());
         if (txtIdProveedor.equals("")) {
             JOptionPane.showMessageDialog(null, "Debes ingresar un proveedor");
         } else {
             mod.setIdProveedor(idProveedor);
-            String MontoCompra = txtMontoCompra.getText();
-            if (MontoCompra.equals("")) {
-                JOptionPane.showMessageDialog(null, "Debes ingresar el monto de la compra");
+            int idropa = Integer.parseInt(txtidropa.getText());
+            if (txtidropa.equals("")) {
+                JOptionPane.showMessageDialog(null, "Debes ingresar un producto");
             } else {
-                mod.setMontoCompra(MontoCompra);
-                String FechaCompra = txtFechaCompra.getText();
-                if (txtFechaCompra.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Debes ingresar una fecha");
+                mod.setIdropa(idropa);
+                String MontoCompra = txtMontoCompra.getText();
+                if (MontoCompra.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Debes ingresar el monto de la compra");
                 } else {
-                    mod.setFechaCompra(FechaCompra);
-                    String DescripcionCompra = txtDescripcionCompra.getText();
-                    if (txtDescripcionCompra.getText().equals("")) {
-                        JOptionPane.showMessageDialog(null, "Debes ingresar una descripcion");
+                    mod.setMontoCompra(MontoCompra);
+                    String FechaCompra = txtFechaCompra.getText();
+                    if (txtFechaCompra.getText().equals("")) {
+                        JOptionPane.showMessageDialog(null, "Debes ingresar una fecha");
                     } else {
-                        mod.setDescripcionCompra(DescripcionCompra);
-                        DefaultTableModel model = (DefaultTableModel) tablaCompras.getModel();
-                        if (modsql.Agregar(mod)) {
-                            JOptionPane.showMessageDialog(this, "Compra guardada", "Compras", JOptionPane.INFORMATION_MESSAGE);
-                            limpiar();
+                        mod.setFechaCompra(FechaCompra);
+                        String DescripcionCompra = txtDescripcionCompra.getText();
+                        if (txtDescripcionCompra.getText().equals("")) {
+                            JOptionPane.showMessageDialog(null, "Debes ingresar una descripcion");
                         } else {
-                            JOptionPane.showMessageDialog(this, "Error al guardar la Compra", "Compras", JOptionPane.ERROR_MESSAGE);
+                            mod.setDescripcionCompra(DescripcionCompra);
+                            DefaultTableModel model = (DefaultTableModel) tablaCompras.getModel();
+                            int cantidad = Integer.parseInt(txtcantidad.getText());
+                            int existencias = modsql.existencias(idropa);
+                            mod.setCantidad(cantidad);
+                            cantidad = cantidad + existencias;
+                            mod2.setExistencias(cantidad);
+                            mod2.setIdropa(idropa);
+                            if (modsql.Modificar(mod2)) {
+                                if (modsql.Agregar(mod)) {
+                                    JOptionPane.showMessageDialog(this, "Compra guardada", "Compras", JOptionPane.INFORMATION_MESSAGE);
+                                    limpiar();
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "Error al guardar la Compra", "Compras", JOptionPane.ERROR_MESSAGE);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Error al guardar la compra", "Compras", JOptionPane.ERROR_MESSAGE);
+                            }
+
                         }
                     }
                 }
             }
+
         }
 
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -575,7 +622,7 @@ public class CRUDCompras extends javax.swing.JFrame {
             PreparedStatement ps;
             ResultSet rs;
             Connection con = Conexion.getCon();
-            String consultaSQL = " SELECT IdCompra, IdProveedor, FechaCompra, MontoCompra, DescripcionCompra from Compra WHERE IdCompra =?;";
+            String consultaSQL = " SELECT IdCompra, IdProveedor,idropa, FechaCompra, MontoCompra,cantidad, DescripcionCompra from Compra WHERE IdCompra =?;";
             ps = con.prepareStatement(consultaSQL);
 
             ps.setInt(1, id);
@@ -583,9 +630,11 @@ public class CRUDCompras extends javax.swing.JFrame {
             while (rs.next()) {
                 this.id.setText(String.valueOf(id));
                 txtIdProveedor.setText(rs.getString(2));
-                txtFechaCompra.setText(rs.getString(3));
-                txtMontoCompra.setText(rs.getString(4));
-                txtDescripcionCompra.setText(rs.getString(5));
+                txtidropa.setText(rs.getString(3));
+                txtFechaCompra.setText(rs.getString(4));
+                txtMontoCompra.setText(rs.getString(5));
+                txtcantidad.setText(rs.getString(6));
+                txtDescripcionCompra.setText(rs.getString(7));
 
                 DefaultTableModel modelotabla = (DefaultTableModel) tablaCompras.getModel();
                 modelotabla.setRowCount(0);
@@ -597,10 +646,15 @@ public class CRUDCompras extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tablaComprasMouseClicked
 
-    private void btnRopaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRopaActionPerformed
+    private void btnproveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnproveedoresActionPerformed
         paraProveedores Jd = new paraProveedores(null,true);
         Jd.setVisible(true);
-    }//GEN-LAST:event_btnRopaActionPerformed
+    }//GEN-LAST:event_btnproveedoresActionPerformed
+
+    private void btnropaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnropaActionPerformed
+        RopaInf2 Jd = new RopaInf2(null,true);
+        Jd.setVisible(true);
+    }//GEN-LAST:event_btnropaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -642,18 +696,19 @@ public class CRUDCompras extends javax.swing.JFrame {
     private javax.swing.JPanel ListadoPanel;
     private javax.swing.JPanel OperacionesPanel;
     private javax.swing.JLabel Registros;
-    private javax.swing.JButton btnActivar;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnDesactivar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnRestablecerTabla;
-    private javax.swing.JButton btnRopa;
+    private javax.swing.JButton btnproveedores;
+    private javax.swing.JButton btnropa;
     private javax.swing.JComboBox<String> cmbfiltro;
     private javax.swing.JLabel id;
     private javax.swing.JLabel idropa;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
@@ -667,5 +722,7 @@ public class CRUDCompras extends javax.swing.JFrame {
     private javax.swing.JTextField txtFechaCompra;
     private javax.swing.JTextField txtIdProveedor;
     private javax.swing.JTextField txtMontoCompra;
+    private javax.swing.JTextField txtcantidad;
+    private javax.swing.JTextField txtidropa;
     // End of variables declaration//GEN-END:variables
 }
