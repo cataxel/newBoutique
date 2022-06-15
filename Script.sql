@@ -44,7 +44,7 @@ insert into ClasePrenda (nombre) value('Calzado');
 select * from ClasePrenda;
 
 create table TipoPrenda(
-	idTipCamiseta de ajuste holgado para hombre, tela de alto gramaje, de manga corta con bolsillooPrenda int auto_increment,
+	-- idTipCamiseta de ajuste holgado para hombre, tela de alto gramaje, de manga corta con bolsillooPrenda int auto_increment,
     nombre varchar(50) not null,
     idclaseprenda int not null,
 	primary key (idTipoPrenda),
@@ -101,7 +101,7 @@ SELECT * FROM tropa.usuarios;
 SELECT * FROM tiendaropa.tipo_usuarios;
 
 create table ropa(
-	idropa int auto_increment,
+	IdRopa int auto_increment,
     nombre varchar(50) not null,
     descripcion varchar(300) not null,
     precio_costo double not null,
@@ -109,17 +109,14 @@ create table ropa(
     ganancia double not null,
     genero varchar(9) not null,
     marca varchar(30) not null,
-    imagen varchar(300) not null,
     idtipoprenda int not null,
-    primary key(idropa),
-    FOREIGN KEY (idtipoprenda) REFERENCES TipoPrenda(idTipoPrenda),
-    FOREIGN KEY (idMarca) REFERENCES Marca(idMarca)
-    
+    existencias int not null
+    primary key(IdRopa),
+    FOREIGN KEY (idtipoprenda) REFERENCES TipoPrenda(idTipoPrenda)
 );
 select * from ropa;
-
+alter table ropa add column existencias int not null;
 drop table ropa;
-
 create table ropa_talla(
 	idRopaTalla int auto_increment,
 	idropa int not null,
@@ -171,44 +168,32 @@ Select MAX(idropa) from ropa;
 
 
 SELECT t.nombre, rt.existencias FROM Tallas t INNER JOIN ropa_talla rt ON t.idtalla = rt.idtalla INNER JOIN ropa r ON rt.idropa = r.idropa WHERE r.idropa=10;
-
-//provedores
-CREATE table Proveedor(
-	CveProveedor int auto_increment not null,
-	NombreProveedor varchar (50) not null ,
-	Telefonoproveedor varchar (12) not null ,
-	DireccionProveedor varchar (100) not null,
-	NombreEmpresaProveedor varchar(50) not null,
-	ActivoProveedor boolean not null,
-	primary key (CveProveedor)
+create table Opiniones(
+CveOpiniones int auto_increment not null,
+CalidadOpiniones varchar(300) not null,
+ExperienciaOpiniones varchar(300) not null,
+SugerenciasOpiniones varchar(300) not null,
+primary key(CveOpiniones)
 );
-insert into Proveedor(NombreProveedor,Telefonoproveedor,DireccionProveedor,NombreEmpresaProveedor,ActivoProveedor) values ('ss','34334','jhabsd','ropa',true);
-UPDATE Proveedor set NombreProveedor = 'nose', Telefonoproveedor ='nose',DireccionProveedor='nose',NombreEmpresaProveedor ='nose' where CveProveedor = 1;
-SELECT * from Proveedor ;
-SELECT COUNT(*) from Proveedor p ;
+insert into Opiniones(CalidadOpiniones, ExperienciaOpiniones, SugerenciasOpiniones) values ('Muy buena', 'Muy buena, e interfaz fácil', 'Favor de poner colores claros en la interfaz');
+select*From Opiniones;
 
-DROP table Proveedores;
-//marcas
-
-create table Marca (
-idMarca int auto_increment,
-Codigomarca int(50) not null,
-nombreMarca varchar(50) not null,
-primary key(idMarca)
+create table Proveedor(
+CveProveedor int auto_increment not null,
+NombreProveedor varchar(50) not null,
+Telefonoproveedor varchar(12) not null,
+DireccionProveedor varchar(100) not null,
+NombreEmpresaProveedor varchar(50) not null,
+ActivoProveedor boolean not null,
+primary key(CveProveedor)
 );
-insert into Marca(Codigomarca, nombreMarca) values('221','H&M');
-select * from Marca;
-SELECT nombreMarca FROM Marca WHERE 1 ORDER BY nombreMarca ASC ;
-
-//opiniones
-create table Opinion(
-	idopinion int auto_increment,
-	Nombre varchar (50) not null,
-	Opinion varchar (500) not null,
-	primary key (idopinion)
-);
-select * from Opinion ;
-
+select CveProveedor, NombreProveedor, NombreEmpresaProveedor,ActivoProveedor from Proveedor;
+select CveProveedor ,NombreProveedor ,ActivoProveedor from Proveedor;
+insert into Proveedor(NombreProveedor, TelefonoProveedor, DireccionProveedor, NombreEmpresaProveedor) values('Verónica Barragán', '3539631801', 'Guadalupe Victoria #927 Sahuayo Michoacán', 'RopaSahuayo');
+UPDATE Proveedor SET NombreProveedor='Ángel David', Telefonoproveedor='3531020411',DireccionProveedor='Niños Héroes #280 Sahuayo',NombreEmpresaProveedor='Nike' WHERE CveProveedor = 1;
+SELECT COUNT(*) FROM Proveedor;
+SELECT * FROM Proveedor WHERE NombreProveedor = 1;
+select*from Proveedor;
 CREATE table Ventas(
 	idVenta int auto_increment,
 	idRopa int not null,
@@ -218,9 +203,30 @@ CREATE table Ventas(
 	Descuento double(11,2) not null,
 	IVA double(11,2) not null,
 	Estado boolean not null,
+	existencias int not null,
 	Primary key (idVenta),
-	foreign key (idRopa) references ropa(idRopa)
+	foreign key (idRopa) references ropa(IdRopa)
 );
+alter table Ventas add column existencias int not null;
 INSERT INTO Ventas(idRopa,folioVenta,Fecha,Total,Descuento,IVA,Estado) VALUES('1','nose','2021-01-10','1000.0','2.0','10.0',true);
 SELECT * from Ventas;
- 
+SELECT existencias from ropa where idropa = 1;
+DELETE from Ventas WHERE idVenta = 8;
+
+create table Compra(
+	IdCompra int not null auto_increment,
+	IdProveedor int,
+	fechaCompra varchar(10) not null,
+	MontoCompra varchar(6) not null,
+	DescripcionCompra varchar(50),
+	idropa int,
+	cantidad int,
+	primary key (IdCompra),
+	FOREIgn KEY (IdProveedor) references Proveedor(CveProveedor)
+	foreign key (idropa) references ropa(idropa);
+);
+alter table Compra add column cantidad int;
+insert into Compra(IdCompra,IdProveedor,FechaCompra, MontoCompra, DescripcionCompra) values(1,1,'2022-05-28','1000','idk');
+SELECT * from Compra;
+DELETE from Compra WHERE IdCompra = 4;
+SELECT IdCompra, IdProveedor, FechaCompra, MontoCompra, DescripcionCompra from Compra WHERE IdCompra ='1';
