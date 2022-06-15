@@ -5,7 +5,6 @@
 package Vista;
 
 
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import javax.swing.ButtonGroup;
@@ -17,14 +16,11 @@ import DataBase.Conexion;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
-import javax.swing.JRadioButton;
 import Controlador.*;
 import Modelo.*;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -65,7 +61,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
         btbagregartalla.setVisible(false);
         imagenRopa = "imagenDefault.jpg";
         btnvolver.setVisible(false);
-        jLabel11.setVisible(false);
+        //jLabel11.setVisible(false);
         btnlimpiartallas.setVisible(false);
         Marcas();
     }
@@ -505,17 +501,16 @@ public class CRUD_ropa extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OperacionesLayout.createSequentialGroup()
                         .addGroup(OperacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, OperacionesLayout.createSequentialGroup()
+                            .addGroup(OperacionesLayout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtpreciocosto, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtprecioventa, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel12)
-                                .addGap(0, 67, Short.MAX_VALUE))
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel12))
                             .addGroup(OperacionesLayout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
@@ -558,7 +553,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cmbtalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 103, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OperacionesLayout.createSequentialGroup()
                         .addGroup(OperacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(OperacionesLayout.createSequentialGroup()
@@ -578,7 +573,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
                                         .addComponent(jLabel2)
                                         .addGap(18, 18, 18)
                                         .addComponent(existencias, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                                 .addComponent(lblRopa, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(OperacionesLayout.createSequentialGroup()
                                 .addComponent(btnAgregar1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -629,9 +624,9 @@ public class CRUD_ropa extends javax.swing.JFrame {
                         .addComponent(txtpreciocosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(OperacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
-                        .addComponent(txtprecioventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12)
-                        .addComponent(cbox_marcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbox_marcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtprecioventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(OperacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnseleccionartalla)
@@ -695,7 +690,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
             ResultSetMetaData rsm;
             Connection con = Conexion.getCon();
             Connection con2 = Conexion.getCon();
-            String consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.genero, r.marca,r.imagen, cp.nombre, tp.nombre, r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.idropa=? ";
+            String consultaSQL = "SELECT DISTINCT r.idropa, r.nombre, r.descripcion, r.precio_costo, r.precio_venta, r.genero, r.marca,r.imagen, cp.nombre, tp.nombre, r.existencias FROM ropa r INNER JOIN ropa_talla rp ON r.idropa = rp.idropa INNER JOIN Tallas t ON rp.idtalla=t.idtalla INNER JOIN ClasePrenda cp ON t.idclasePrenda=cp.idClasePrenda INNER JOIN TipoPrenda tp ON r.idtipoprenda = tp.idTipoPrenda WHERE r.idropa=? ;";
             String consulta_talla = "SELECT t.nombre, rt.existencias FROM Tallas t INNER JOIN ropa_talla rt ON t.idtalla = rt.idtalla INNER JOIN ropa r ON rt.idropa = r.idropa WHERE r.idropa=?";
             ps=con.prepareStatement(consultaSQL);
             ps.setInt(1, id);
@@ -717,14 +712,14 @@ public class CRUD_ropa extends javax.swing.JFrame {
                 }
                 //txtcantidad.setText(rs.getString("cantidad"));
                 cbox_marcas.setSelectedItem(rs.getString(7));
-                if(rs.getString(8).equals("Superior"))
+                if(rs.getString(9).equals("Superior"))
                 {
                     rbsuperior.setSelected(true);
                     TraerTipos(1);
                     TraerTallas(1);
                 }else
                 {
-                    if(rs.getString(8).equals("Inferior"))
+                    if(rs.getString(9).equals("Inferior"))
                     {
                         rbinferior.setSelected(true);
                         TraerTipos(2);
@@ -736,9 +731,10 @@ public class CRUD_ropa extends javax.swing.JFrame {
                         TraerTallas(3);
                     }
                 }
-                cmbtipo1.setSelectedItem(rs.getString(9));
+                cmbtipo1.setSelectedItem(rs.getString(10));
                 
-                pintarImagen(lblRopa, "/src/Vista/img/"+rs.getString(10));
+                pintarImagen(lblRopa, "src/Vista/img/"+rs.getString(8));
+                System.out.println(rs.getString(8));
                 existencias.setText(rs.getString(11));
                 DefaultTableModel modelotabla = (DefaultTableModel) jTable1.getModel();
                 modelotabla.setRowCount(0);
@@ -1492,7 +1488,7 @@ public class CRUD_ropa extends javax.swing.JFrame {
         cmbtalla.setVisible(!accion);
         jScrollPane3.setVisible(!accion);
         btnvolver.setVisible(!accion);
-        jLabel11.setVisible(!accion);
+        //jLabel11.setVisible(!accion);
         btnlimpiartallas.setVisible(!accion);
     }
      private void CargarTabla()
